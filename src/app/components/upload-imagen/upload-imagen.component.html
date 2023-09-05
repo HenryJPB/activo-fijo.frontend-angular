@@ -1,0 +1,53 @@
+<p>upload-imagen works!</p>
+<div>
+    <input type="file" class="file-upload" (change)="capturarImagen($event)" >
+    <!-- 
+    <input type="file" class="file-upload" (change)="console.log($event.target.files)" #fileUpload>
+    -->
+</div>
+<!--  Preview imagen -->
+<div *ngIf="imgPrevisualizacion">
+    <img [src]="imgPrevisualizacion" alt="" width="100px"  >
+</div>
+<!-- 
+<button type="text" [disabled]="" class="btn btn-info" (click)="subirArchivo()">
+    Subir imagen
+</button>
+-->
+<!--  NO funciono ????? 
+<button type="text" [disabled]="" class="btn btn-info" (click)="subiArchivo()">
+    "{ {(loading) ? 'Cargando,...' : 'Subir imagen'} }"
+</button>
+-->
+<button class="btn btn-primary" (click)="guardarImagenActivo()">Guardar imagen (Activo)</button>
+<!--  Correcto 👇
+<button class="btn btn-primary" (click)="guardarImagenUbic()">Guardar imagen (Ubic)</button>
+-->
+
+<div> 
+    <button type="text" [disabled]="" class="btn btn-info" (click)="getImagenBD()">
+        Get imagen from MySQL DB
+    </button>
+    <div *ngIf="imgPrevisualizacionBD">
+        <img [src]="imgPrevisualizacionBD" alt="" width="100px"  >
+         <!--
+        <img src="data:image/png;base64,{{imgPrevisualizacionBD}}"/>
+         -->
+    </div>
+</div>
+<!-- https://material.angular.io/components/select/examples -->
+<form>
+    <!-- 👍 --> 
+    <h4>UBICACIONES</h4>
+    <mat-form-field>
+      <mat-label>UBICACIONES</mat-label>
+      <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect">
+        <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">
+          {{ubicacion.descripcion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- 👍 --> 
+    <p> Selected UBICACION : {{ ubicacionSelect?.codigo_ubic+"-"+ubicacionSelect?.descripcion }} </p>
+</form>
+  

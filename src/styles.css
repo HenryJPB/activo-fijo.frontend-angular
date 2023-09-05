@@ -2,3 +2,6 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html   */ 
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
