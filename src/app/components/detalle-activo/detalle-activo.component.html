@@ -1,0 +1,80 @@
+
+<div class="container">
+    <!-- Content here -->
+    <div class="card">
+        <div class="card-header mt-3">
+             <h3 class="font-weight-bold"><strong> /HOME </strong> <strong class="text-success">/ACTIVO/DETALLES:</strong> </h3> <!-- 👍 -->
+        </div>
+        <div class="card-body">
+            <div class="mat-elevation-z8">
+                <h1 class="display-1">DETALLES DEL ACTIVO</h1> 
+                <!-- 
+                <div class="d-flex justify-content-between" *ngIf="imgPrevisualizacion" >
+                -->
+                <div class="ms-4 mb-2" > 
+                    <div *ngIf="imgPrevisualizacion; else no_imagen" >
+                      <img [src]="imgPrevisualizacion" alt="" width="425px"  >    
+                    </div>
+                    <ng-template #no_imagen> <img src="assets/img/imagen-no-disponible.jpeg" alt="" width="325px"> </ng-template>
+                </div>
+
+                <div class="row ms-3"> 
+                    <!-- 
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Id</b> : {{ activo?.id }}</label>
+                    </div>
+                    -->
+                    <div class="col-md-9">
+                        <label class="form-label"><b>Codigo</b> : {{activo?.codigo_activo}} </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Descripcion</b> : {{activo?.descripcion}} </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Ubicacion</b> : {{ubicacion?.descripcion}} </label> 
+                    </div>
+                </div>
+
+                <div class="row ms-3">
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Marca</b> : {{activo?.marca}} </label> 
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Modelo</b> : {{activo?.modelo}} </label> 
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Serial</b> : {{activo?.serial}} </label> 
+                    </div>
+                </div>
+                
+                <div class="row ms-3">
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Valor compra</b> : {{activo?.valor_inicial}} </label> 
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Vida util</b> : {{activo?.valor_inicial}} </label> 
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Valor rescate</b> : {{activo?.valor_rescate}} </label> 
+                    </div>
+                </div>
+
+                <div class="row ms-3">
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Observacion</b> : {{activo?.observacion}} </label> 
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Activo</b> </label> 
+
+                        <!--  https://www.tutorialesprogramacionya.com/angularya/detalleconcepto.php?punto=74&codigo=74&inicio=60   -->
+                        <span *ngIf="activo?.desincorporado === 0; else no_activo">: SI</span>
+                        <ng-template #no_activo>: NO</ng-template>
+
+                    </div>
+                </div>
+
+                <button routerLink="/listar-activos" class="btn btn-primary btn-lg float-star">VOLVER</button>
+            </div>  
+        </div>
+    </div>
+</div>

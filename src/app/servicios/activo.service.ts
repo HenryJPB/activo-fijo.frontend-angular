@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activo } from 'src/modelos/Activo';
+import { Ubicacion } from 'src/modelos/Ubicacion';
+import { ListarUbicacionesComponent } from '../components/listar-ubicaciones/listar-ubicaciones.component';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class ActivoService {
   constructor( private _httpClient : HttpClient ) { }
 
   //-------------------------------------------------------------
-  getAcfivos():Observable<Activo[]> {
+  getActivos():Observable<Activo[]> {
     const URL = this.baseURL + "/activos";  
     return this._httpClient.get<Activo[]>(URL);
    }  // getAcfivos()
@@ -46,11 +48,17 @@ export class ActivoService {
   * }
   * */    
   //-------------------------------------------------------------
-  guardarImagenI( activo: Activo ):Observable<Object> {
+  guardarActivo( activo: Activo ):Observable<Object> {
     const URL = this.baseURL + "/activos"; 
     //return this._httpClient.post(`${this.baseURL}`,activo ); 
     //return this._httpClient.post(URL,activo); 
     return this._httpClient.post(`${URL}`, activo ); 
+  }
+
+   //-------------------------------------------------------------
+   guardar( activo: Activo, codigo_ubic : String ):Observable<Object> {
+    const URL = this.baseURL + "/activos/"+codigo_ubic; 
+    return this._httpClient.post( URL, activo ); 
   }
 
   //-------------------------------------------------------------
@@ -66,6 +74,14 @@ export class ActivoService {
     const URL = this.baseURL + "/activos/buscar/"+id; 
     //console.log("URL="+URL);  
     return this._httpClient.get<Activo>(`${URL}`);
+  }
+
+  //------------------------------------------------------------------
+  // https://www.youtube.com/watch?v=o_HV_FCs-Z0
+  //------------------------------------------------------------------
+  eliminar( id : number ):Observable<Object> { 
+    const URL = this.baseURL + "/activos/"+id; 
+    return this._httpClient.delete( URL ); 
   }
 
 }  // class ActivoService 

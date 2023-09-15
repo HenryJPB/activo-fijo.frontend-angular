@@ -43,6 +43,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { DetalleActivoComponent } from './components/detalle-activo/detalle-activo.component';
+import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
+import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { MatSelectModule } from '@angular/material/select';
     HeaderComponent,
     FooterComponent,
     PagBienvenidaComponent,
-    UploadImagenComponent
+    UploadImagenComponent,
+    DetalleActivoComponent,
+    ActualizarActivoComponent,
+    CrearActivoComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,9 @@ import { ListarActivosComponent } from './components/listar-activos/listar-activ
 import { ListarUbicacionesComponent } from './components/listar-ubicaciones/listar-ubicaciones.component';
 import { PagBienvenidaComponent } from './components/pag-bienvenida/pag-bienvenida.component';
 import { UploadImagenComponent } from './components/upload-imagen/upload-imagen.component';
+import { DetalleActivoComponent } from './components/detalle-activo/detalle-activo.component';
+import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
+import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
 
 const routes: Routes = [
   { path: '', component: PagBienvenidaComponent },
@@ -13,6 +16,9 @@ const routes: Routes = [
   { path: 'listar-activos', component: ListarActivosComponent },
   { path: 'listar-articulos', component: ListarArticulosComponent }, 
   { path: 'listar-ubicaciones', component: ListarUbicacionesComponent }, 
+  { path: 'detalle-activo/:id/:codigo_ubic', component: DetalleActivoComponent }, 
+  { path: 'actualizar-activo/:id/:codigo_ubic', component: ActualizarActivoComponent }, 
+  { path: 'crear-activo', component: CrearActivoComponent }, 
   { path: 'upload-imagen', component: UploadImagenComponent },    
   { path: 'pruebame', component: PruebameComponent }, 
   { path: '**', redirectTo: '', pathMatch: 'full' }

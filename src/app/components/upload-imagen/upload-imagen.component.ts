@@ -4,6 +4,7 @@ import { ActivoService } from 'src/app/servicios/activo.service';
 import { Activo } from 'src/modelos/Activo';
 import { Ubicacion } from 'src/modelos/Ubicacion';
 import { UbicacionService } from 'src/app/servicios/ubicacion.service';
+import { FormControl } from '@angular/forms';
 // 
 /*
 import {MatInputModule} from '@angular/material/input';
@@ -26,9 +27,16 @@ export class UploadImagenComponent implements OnInit {
   public imgPrevisualizacion! : string;
   public imgPrevisualizacionBD! : string;   
 
-  ubicacionSelect : Ubicacion | undefined; 
+  //ubicacionSelect : Ubicacion | undefined; 
+
   ubicaciones : Ubicacion[]=[];   
-  seleccionado : string | undefined;  
+  seleccionado : string | undefined; 
+
+  //new Option('Option2'); 
+
+  ubicacionSelect : Ubicacion = new Ubicacion("INFORMATICA","DEPARTAMENTO DE INFORMATICA"); 
+  // ubicacionSelect = new Option( "INFORMATICA","DEPARTAMENTO DE INFORMATICA"); 
+  ubicacionSelectControl = new FormControl( this.ubicacionSelect );    // ?????
 
   constructor( private sanitizer : DomSanitizer, private _activo : ActivoService, private _ubicacion : UbicacionService ) {} 
 
@@ -85,7 +93,7 @@ export class UploadImagenComponent implements OnInit {
       //console.log("metodo: capturarImagen= imagen.blob 👇:");
       //console.log(imagen);  
     } );   
-  }
+  }  //  capturarImagen().
 
 /*
 const cargarDatos = async () => {
@@ -226,7 +234,7 @@ cargarDatos();
     console.log("activo to save es: "); 
     console.log(activo);  
     // convocar servicio:   
-    this._activo.guardarImagenI(activo).subscribe( registro =>{} );  
+    this._activo.guardarActivo(activo).subscribe( registro =>{} );  
     //
   } // guardarImagenActivo().
   
@@ -240,18 +248,25 @@ cargarDatos();
   getImagenBD() {
       //var activo : Activo | undefined; 
       var act : any = Activo;   
+      var ubi : any = Ubicacion;   
       //this._activo.getActivoPorId(14).subscribe( response => {    // registro # 14 - prueba exitosa 💪   
       this._activo.getActivoPorId(16).subscribe( response => {    // registro # 16 - prueba exitosa 💪   
-          /*    
+          //  
+          /*
           console.log("response:👇");
           console.log(response);   
           console.log("suscribe _activo.getActivoID... ejecutado"); 
           if ( response!==null ) { 
             console.log("REGISTRO ENCONTRADO"); 
+            console.log(response);  
+            ubi = response.ubicacion;
+            // console.log(response.ubicacion);   // 'undefined' ????????????????????????
+            console.log(ubi);                   // undefined ?????????????????? 
           } else {
             console.log("REGISTRO NO ENCONTRADO"); 
           }
-          */ 
+          */   
+          //  
           /*
           act = response;  
           this.activo = response;
@@ -301,5 +316,13 @@ cargarDatos();
     }
     return result;
   } // arrayCollectionToObject 
+
+  checkSeleccion( u : Ubicacion ) {
+    //const u = this.ubicacionSelectControl;  
+    console.log("----------------------------------------------");
+    console.log( u ); 
+    console.log( "codigo: "+u.codigo_ubic ); 
+    console.log("----------------------------------------------");
+  } 
 
 }  // export class UploadImagenComponent ...

@@ -13,7 +13,7 @@
 <button type="text" [disabled]="" class="btn btn-info" (click)="subirArchivo()">
     Subir imagen
 </button>
--->
+--> 
 <!--  NO funciono ????? 
 <button type="text" [disabled]="" class="btn btn-info" (click)="subiArchivo()">
     "{ {(loading) ? 'Cargando,...' : 'Subir imagen'} }"
@@ -36,18 +36,33 @@
     </div>
 </div>
 <!-- https://material.angular.io/components/select/examples -->
-<form>
+<div>
     <!-- 👍 --> 
     <h4>UBICACIONES</h4>
-    <mat-form-field>
+    <mat-form-field class="fit-content" style="width: 450px;" >
       <mat-label>UBICACIONES</mat-label>
-      <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect">
-        <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">
+      <!-- 
+      funciona asi correctamente: 
+      <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect" [(value)]="ubicacionSelect" >
+      -->
+      <!-- y asi tambien, lamentablemente no hay forma de q quede inicializado el gadget ?????  -->
+      <mat-select formControlName="ubicacionSelectControl" [(value)]="ubicacionSelect" >
+        <!-- 
+        <option value="ubicacionSelect.descripcion">{{ubicacionSelect.descripcion}}</option>
+        --> 
+        <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion" >
           {{ubicacion.descripcion}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <!-- 👍 --> 
-    <p> Selected UBICACION : {{ ubicacionSelect?.codigo_ubic+"-"+ubicacionSelect?.descripcion }} </p>
-</form>
-  
+    <p> Selected UBICACION : {{ ubicacionSelect.codigo_ubic+"-"+ubicacionSelect.descripcion }} </p>  
+</div>
+
+<div>
+    <button class="btn btn-primary" (click)="checkSeleccion( ubicacionSelect )">Check seleccion</button>
+</div>
+
+
+
+

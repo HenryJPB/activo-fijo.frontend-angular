@@ -1,0 +1,159 @@
+<!--   <p>crear-activo works!</p> --> 
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+
+                <div class="card-header mt-3 text-center">
+                  <span class="titulo" > CREAR ACTIVO</span>
+                </div>
+          
+                <div class="card-body">
+                  <form [formGroup]="activoForm"  (ngSubmit)="guardar( activo )" >
+
+                    <div class="row mb-2">
+                        <label for="inputCodActivo" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Cod Activo:</label> </h3> </label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo">    
+                          <span class="text-danger" *ngIf="activoForm.get('codigo_activo')?.hasError('required') && activoForm.get('codigo_activo')?.touched" ><strong>Codigo activo obligatorio</strong></span>  
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <label for="inputDescripcion" class="col-sm-2 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="activo.descripcion">
+                          <span class="text-danger" *ngIf="activoForm.get('descripcion')?.hasError('required') && activoForm.get('descripcion')?.touched" ><strong>Descripcion obligatorio</strong></span>
+                        </div>
+                    </div>
+
+                    <div>
+                      <!-- 
+                      <h4 class="display-2">Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ubicacionSelect.descripcion }}</h4>
+                      -->
+                      <div> 
+                        <div *ngIf="ubicacionSelect.descripcion===null || ubicacionSelect.descripcion===''; else no_nulo"> 
+                          <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *NO REGISTRADA* </h4>
+                        </div>
+                        <ng-template #no_nulo> <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ubicacionSelect.descripcion }}</h4> </ng-template>           
+                      </div>
+                      <mat-form-field class="fit-content" style="width: 550px;" >
+                        <mat-label> NUEVA UBICACION </mat-label>
+                        <div class="col-sm-10"> 
+                          <!-- 
+                          <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect" [(value)]="ubicacionSelect" >
+                          <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="ubicacion" >  // De esta manera 👉 [(ngModel)]="activo.ubicacion"> : el gadget posee otro behavior 
+                          -->
+                          <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="activo.ubicacion" > 
+                            <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion" >
+                              {{ubicacion.descripcion}}
+                            </mat-option>
+                          </mat-select>
+                        </div>
+                      </mat-form-field>
+                      <!-- 
+                      <h4 class="display-4">{{ ubicacionSelect.descripcion }}</h4>
+                      -->
+                    </div>
+
+                      <div class="mb-2" > 
+                          <div *ngIf="imgPrevisualizacion; else no_imagen" >
+                            <img [src]="imgPrevisualizacion" alt="" width="225px"  >    
+                          </div>
+                          <ng-template #no_imagen> <img src="assets/img/imagen-no-disponible.jpeg" alt="" width="225px"> </ng-template>
+                          <div>
+                              <!--
+                              <input type="file" class="file-upload" (change)="capturarImagen($event)" >
+                               
+                              <input type="file" class="file-upload" (change)="console.log($event.target.files)" #fileUpload>
+                              -->
+                              <!--
+                              <label for="formFileLg" class="form-label">Large file input example</label>
+                              -->
+                              <input class="form-control form-control-lg" id="formFileImg" type="file" (change)="capturarImagen($event)" />
+                          </div>
+                      </div>
+
+                      <!-- marca, modelo, serial -->
+                      <div class="row mb-2">
+                          <label for="inputMarca" class="col-sm-2 col-form-label"><h3>Marca:</h3></label>
+                          <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputMarca" placeholder="Marca" formControlName="marca" [(ngModel)]="activo.marca">    
+                            <span class="text-danger" *ngIf="activoForm.get('marca')?.hasError('required') && activoForm.get('marca')?.touched" ><strong>Marca obligatorio</strong></span>  
+                          </div>
+                      </div>         
+                         
+                      <div class="row mb-2">
+                          <label for="inputModelo" class="col-sm-2 col-form-label"><h3>Modelo:</h3></label>
+                          <div class="col-sm-5">
+                              <input type="text" class="form-control" id="inputModelo" placeholder="Modelo" formControlName="modelo" [(ngModel)]="activo.modelo">
+                              <span class="text-danger" *ngIf="activoForm.get('modelo')?.hasError('required') && activoForm.get('modelo')?.touched" ><strong>Modelo obligatorio</strong></span>
+                          </div>
+                      </div>
+
+                      <div class="row mb-2">
+                            <label for="inputSerial" class="col-sm-2 col-form-label"><h3>Serial:</h3></label>
+                            <div class="col-sm-5">
+                              <input type="text" class="form-control" id="inputSerial" placeholder="Serial activo" formControlName="serial" [(ngModel)]="activo.serial">
+                              <span class="text-danger" *ngIf="activoForm.get('serial')?.hasError('required') && activoForm.get('serial')?.touched" ><strong>Serial obligatorio</strong></span>
+                            </div>
+                      </div>
+
+                      <!-- valor inicial, vida util, valor rescate -->
+                      <div class="row mb-2">
+                          <div class="form-outline" style="width: 13rem;">
+                            <input step="0.01" type="number" id="valorCompra" class="form-control" formControlName="valor_inicial" [(ngModel)]="activo.valor_inicial" />
+                            <label class="form-label" for="typeNumber"><h3>Valor de compra</h3></label>
+                          </div>
+
+                          <div class="form-outline" style="width: 13rem;">
+                            <input step="1" type="number" id="vidaUtil" class="form-control" [value]="activo.vida_util" formControlName="vida_util" [(ngModel)]="activo.vida_util" />
+                            <label class="form-label" for="typeNumber"><h3>Vida util</h3></label>
+                          </div>
+
+                          <div class="form-outline" style="width: 13rem;">
+                            <input step="0.01" type="number" id="valorRescate" class="form-control" [value]="activo.valor_rescate" formControlName="valor_rescate" [(ngModel)]="activo.valor_rescate" />
+                            <label class="form-label" for="typeNumber"><h3>Valor rescate</h3></label>
+                          </div>
+                      </div>
+
+                      <!-- Observacion -->
+                      <div class="row mb-2">
+                        <div>
+                            <label for="inputObservacion" class="col-sm-2 col-form-label"><h3>Observacion:</h3></label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputObservacion" placeholder="Observacion" formControlName="observacion" [(ngModel)]="activo.observacion">
+                              <span class="text-danger" *ngIf="activoForm.get('observacion')?.hasError('required') && activoForm.get('observacion')?.touched" ><strong>Observacion obligatorio</strong></span>
+                            </div>
+                        </div>
+                      </div>
+
+                      <!-- Desincorporado -->
+                      <div class="row mb-2">
+                        <!--
+                        <div class="col-sm-10 offset-sm-2">
+                        -->
+                          <div class="col-sm-10">
+                              <div class="form-check">
+                                <!-- 
+                                <input class="form-check-input" type="checkbox" id="gridCheckDesincorporado" [checked]="activo.desincorporado !== 0" formControlName="desincorporado" [(ngModel)]="activo.desincorporado" >
+                                -->
+                                <input class="form-check-input" type="checkbox" id="gridCheckDesincorporado" formControlName="desincorporado" [(ngModel)]="activo.desincorporado" >
+                                <label class="form-check-label" for="gridCheckDesincorporado">
+                                  <h3>Activo desincorporado</h3> 
+                                </label>
+                              </div>
+                          </div>
+                      </div>
+
+                      <button routerLink="/listar-activos" class="btn btn-secondary btn-lg float-star">VOLVER/CANCELAR</button>
+                      
+                      <button type="submit" [disabled]="activoForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
+                  </form>
+
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+

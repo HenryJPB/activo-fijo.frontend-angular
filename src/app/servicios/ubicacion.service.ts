@@ -35,6 +35,7 @@ export class UbicacionService {
     return this._httpClient.get<Ubicacion[]>(URL); 
   } 
 
+  //
   guardarUbicacion( ubicacion : Ubicacion ):Observable<Object> {
     const URL = this.baseURL + "/ubicaciones"; 
     const id = "ELIMINAME";  
@@ -44,12 +45,18 @@ export class UbicacionService {
     return this._httpClient.post(`${URL}/${id}`, ubicacion );
   }
 
-  // en desarrollo, ... 
+  //---------------------------------------------------------------------
   actualizarUbicacion( ubicacion : Ubicacion ): Observable<Object> {
     const URL = this.baseURL + "/ubicaciones"; 
     const id = "ELIMINAME";   
     //console.log("*****Actualizar trabajador +"+id+"****************"); 
     return this._httpClient.put(`${URL}/${id}`,ubicacion );  
+  }
+
+  //----------------------------------------------------------------------
+  getUbicacionCod( codigo_ubic : string ):Observable<Ubicacion> {
+    const URL = this.baseURL + "/ubicaciones/buscar/"+codigo_ubic; 
+    return this._httpClient.get<Ubicacion>(URL);  
   }
 
 }

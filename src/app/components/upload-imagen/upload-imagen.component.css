@@ -1,0 +1,44 @@
+.form-field-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .form-field-label {
+      white-space: nowrap;
+    }
+    .form-field-label + mat-form-field {
+     margin-left: 10px;
+    }
+    mat-form-field {
+      width:100%;
+    }
+  }
+
+.mat-form-field.fit-content {
+    .mat-select-placeholder {
+      min-width: 180px;
+    }
+  
+    .mat-form-field-infix {
+      width: fit-content;
+      min-width: fit-content;
+    }
+  
+    .mat-form-field {
+      width: auto !important;
+    }
+  
+    .mat-select-value {
+      max-width: 100%;
+      width: auto;
+    }
+  }
+
+.auto-width{
+    .mat-form-field {
+        width: auto !important;
+    }
+    .mat-select-value {
+        max-width: 100%;
+        width: auto;
+    }  
+}

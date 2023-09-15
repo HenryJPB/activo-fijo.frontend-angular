@@ -5,3 +5,55 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html   */ 
 @import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+.titulo {
+    font-size: 27px;
+    font-family: 'Yeseva One';
+}
+
+.auto-width{
+    .mat-form-field {
+        width: auto !important;
+    }
+    .mat-select-value {
+        max-width: 200%;
+        width: auto;
+    }  
+}
+
+/* https://stackblitz.com/edit/angular-mat-select-example-icf9op?file=src%2Fapp%2Fapp.component.scss,src%2Fstyles.scss,src%2Fapp%2Fapp.component.ts,src%2Fapp%2Fapp.component.html,src%2Findex.html */
+.form-field-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .form-field-label {
+      white-space: nowrap;
+    }
+    .form-field-label + mat-form-field {
+     margin-left: 10px;
+    }
+    mat-form-field {
+      width:100%;
+    }
+}
+
+/**/ 
+.mat-form-field.fit-content {
+    .mat-select-placeholder {
+      min-width: 180px;
+    }
+  
+    .mat-form-field-infix {
+      width: fit-content;
+      min-width: fit-content;
+    }
+  
+    .mat-form-field {
+      width: auto !important;
+    }
+  
+    .mat-select-value {
+      max-width: 100%;
+      width: auto;
+    }
+  }

@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm-9">
               <button type="text" class="btn btn-info" (click)="filtrar()">FILTRAR</button>
-              <button class="btn btn-success float-end" routerLink="/pruebame">CREAR ACTIVO</button>
+              <button class="btn btn-success float-end" routerLink="/crear-activo">CREAR ACTIVO</button>
               <button class="btn btn-warning float-end" routerLink="/pruebame">IMPRIMIR</button>
             </div>
           </div>
@@ -71,21 +71,31 @@
               <!--
               <mat-header-cell *matHeaderCellDef>Accion</mat-header-cell>
               -->  
-              <th mat-header-cell *matHeaderCellDef >Accion</th>
+              <th mat-header-cell *matHeaderCellDef matColumnDef="accion">Accion</th>
               <mat-cell *matCellDef="let element;">
                 <!-- ***Abrir tab en una nueva pestaña 👆 👇 👍 ✔️ 👈 👉 // https://www.piliapp.com/emoji/list/hand/  
                 <button mat-icon-button>
                   <mat-icon>launch</mat-icon>        
                 </button>
                 -->
+                <!-- 
                 <button title="Ver detalle" mat-icon-button (click)="detalle( element.codigo_activo, element.ubicacionDat.descripcion )">
-                  <mat-icon>zoom_in</mat-icon>        
+                -->
+                <button title="Ver detalle" mat-icon-button (click)="detalle( element.id, element.ubicacionDat.codigo_ubic )">
+                  <!--
+                  <mat-icon>zoom_in</mat-icon>  
+                  <mat-icon>description</mat-icon> 
+                  --> 
+                  <mat-icon>aspect_ratio</mat-icon>    
                 </button>
-                <button title="Eliminar" mat-icon-button (click)="eliminar( element.descripcion )" >
+                <button title="Eliminar" mat-icon-button (click)="eliminar( element.id )" >
                   <mat-icon color="warn" >delete</mat-icon>
                 </button>
-                <button title="Editar" mat-icon-button (click)="editar( element.descripcion )" >
+                <button title="Editar" mat-icon-button (click)="editar( element.id, element.ubicacionDat.codigo_ubic)" >
                   <mat-icon color="primary" >edit</mat-icon>
+                </button>
+                <button title="Adicionar" mat-icon-button >
+                  <mat-icon color="" >note_add</mat-icon>
                 </button>
               </mat-cell>
             </ng-container>
@@ -96,8 +106,7 @@
           <mat-paginator
             [pageSizeOptions]="[5, 10, 20]"
             showFirstLastButtons
-            aria-label="Seleccionar pagina"
-          >
+            aria-label="Seleccionar pagina">
           </mat-paginator>
         </div>
       </div>

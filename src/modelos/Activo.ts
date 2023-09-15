@@ -6,7 +6,7 @@ export class Activo {
     descripcion! : string;
     ubicacion! : Ubicacion;  
     //imagen! : Blob;   
-    imagen! : any [];  
+    imagen! : any [];     // Array de objetos!!   
     nro_compra! : string; 
     marca! : string;  
     modelo! : string; 

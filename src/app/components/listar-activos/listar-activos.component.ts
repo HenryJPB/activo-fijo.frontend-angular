@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ActivoService } from 'src/app/servicios/activo.service';
-//import { ActivoService } from 'src/app/servicios/activo.service';
 import { Activo } from 'src/modelos/Activo';
+import Swal from 'sweetalert2';
 
 // https://www.geeksforgeeks.org/javascript-blob/ 👇    
 // const mi_imagen = new Blob(["GeeksForGeeks"],{type : "text/plain"});
@@ -27,6 +28,7 @@ const ACTIVO_DATA: Activo[] = [
   templateUrl: './listar-activos.component.html',
   styleUrls: ['./listar-activos.component.css']
 })
+
 export class ListarActivosComponent implements OnInit {
 
   activos: Activo[] = [];  
@@ -45,7 +47,7 @@ export class ListarActivosComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor( private _activo : ActivoService ) {}
+  constructor( private _activo : ActivoService, private router : Router ) {}
 
   ngOnInit(): void {  
     this.getActivos(); 
@@ -53,7 +55,7 @@ export class ListarActivosComponent implements OnInit {
   }
 
   private getActivos()  {
-    this._activo.getAcfivos().subscribe( datosResponse => {
+    this._activo.getActivos().subscribe( datosResponse => {
       this.activos = datosResponse;  
       //console.log("Activos: "+this.activos+"****");   // Display registros tipo object,..[object Object],...
       this.dataSource.data = datosResponse;  
@@ -87,7 +89,7 @@ export class ListarActivosComponent implements OnInit {
     var x = this.inputFiltro.value;  
     if (x === undefined || x === null ||  x=== '' ) {    // TODO
       //console.log("Variable is either null or undefined");
-      this._activo.getAcfivos().subscribe( datosResponse => {
+      this._activo.getActivos().subscribe( datosResponse => {
         this.activos = datosResponse;  
         //console.log("Activos: "+this.activos+"****");   // Display registros tipo object,..[object Object],...
         //console.log("Filtro nulo, deberia desplegar todos los records,...")
@@ -103,16 +105,49 @@ export class ListarActivosComponent implements OnInit {
     }
   }  // filtrar()
 
+  /*
   detalle( codigo_activo : string, ubicacion : string  ) {
     console.log("Ver detalle del registro: "+codigo_activo+"****ubicacion: "+ubicacion );  
   }
+  */ 
 
-  eliminar( descripcion : string ) {
-    console.log("ELIMINAR a: "+descripcion+"*****");  
-  }
+  //---------------------------------------------------------------------
+  detalle( id:number, codigo_ubic : string ) {
+    //console.log("*****detalles*****id="+id+"***codigo_ubic="+codigo_ubic+"*****"); 
+    this.router.navigate(['detalle-activo',id,codigo_ubic]); 
+    //this.router.navigate(['pruebame']); 
+  } 
   
-  editar( descripcion : string ) {
-    console.log("EDITAR a: "+descripcion+"*****");  
+  //---------------------------------------------------------------------
+  // https://sweetalert2.github.io/
+  //---------------------------------------------------------------------
+  eliminar( id:number ) {
+    Swal.fire({
+      title: 'Seguro?',
+      text: "ATENCION: accion no reversible!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._activo.eliminar(id).subscribe( response => { 
+            this.getActivos();   
+            Swal.fire(
+              'Eliminado!',
+              'Registró eliminado.',
+              'success'
+            ) } );    
+
+      }  // if (result.isConfirmed)
+    });   
+  }  // eliminarEmpleado().  
+  
+  //------------------------------------------------------------------------
+  editar( id:number, codigo_ubic : string ) {
+    //console.log("*****id="+id+"*****ubic="+codigo_ubic+"******");   
+    this.router.navigate(['actualizar-activo',id,codigo_ubic]);   
   }
 
 }
