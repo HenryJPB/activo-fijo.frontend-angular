@@ -9,6 +9,7 @@ import { UploadImagenComponent } from './components/upload-imagen/upload-imagen.
 import { DetalleActivoComponent } from './components/detalle-activo/detalle-activo.component';
 import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
 import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
+import { ListarAdicionesComponent } from './components/listar-adiciones/listar-adiciones.component';
 
 const routes: Routes = [
   { path: '', component: PagBienvenidaComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'detalle-activo/:id/:codigo_ubic', component: DetalleActivoComponent }, 
   { path: 'actualizar-activo/:id/:codigo_ubic', component: ActualizarActivoComponent }, 
   { path: 'crear-activo', component: CrearActivoComponent }, 
+  { path: 'listar-adiciones/:codigo_activo/:descripcion', component: ListarAdicionesComponent }, 
   { path: 'upload-imagen', component: UploadImagenComponent },    
   { path: 'pruebame', component: PruebameComponent }, 
   { path: '**', redirectTo: '', pathMatch: 'full' }

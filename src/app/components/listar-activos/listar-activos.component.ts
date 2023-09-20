@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ActivoService } from 'src/app/servicios/activo.service';
+import { AdicionService } from 'src/app/servicios/adicion.service';
 import { Activo } from 'src/modelos/Activo';
 import Swal from 'sweetalert2';
 
@@ -31,7 +32,7 @@ const ACTIVO_DATA: Activo[] = [
 
 export class ListarActivosComponent implements OnInit {
 
-  activos: Activo[] = [];  
+  activos: Activo[] = [];   
 
   displayedColumns: string[] = ['codigo_activo','descripcion','ubicacion','actions'];
   /* Probar 👇 eeexxiiiitooo 👍 ✔️
@@ -51,9 +52,9 @@ export class ListarActivosComponent implements OnInit {
 
   ngOnInit(): void {  
     this.getActivos(); 
-    //this.dataSource 
   }
 
+  //--------------------------------------------------------------------
   private getActivos()  {
     this._activo.getActivos().subscribe( datosResponse => {
       this.activos = datosResponse;  
@@ -145,9 +146,15 @@ export class ListarActivosComponent implements OnInit {
   }  // eliminarEmpleado().  
   
   //------------------------------------------------------------------------
-  editar( id:number, codigo_ubic : string ) {
+  editar( id: number, codigo_ubic : string ) {
     //console.log("*****id="+id+"*****ubic="+codigo_ubic+"******");   
     this.router.navigate(['actualizar-activo',id,codigo_ubic]);   
+  }
+
+  //------------------------------------------------------------------------
+  adicionar( codigo_activo: string, descripcion: string  ) {
+    //console.log("activo para adicionar: "+codigo_activo+", ubicado en "+codigo_ubic+"***");   
+    this.router.navigate(['listar-adiciones',codigo_activo,descripcion]); 
   }
 
 }

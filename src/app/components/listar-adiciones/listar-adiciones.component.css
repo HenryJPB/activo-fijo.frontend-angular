@@ -1,0 +1,61 @@
+.demo-table {
+    width: 100%;
+}
+
+/* https://material.angular.io/components/table/overview   
+.mat-column-col-id {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-col-fecha {
+    padding-left: 16px;
+    font-size: 20px;
+}
+
+.mat-column-col-descripcion {
+    font-style: italic;
+}
+
+.mat-column-col-vida-util {
+    width: 32px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mat-column-col-valor-adicion {
+    width: 32px;
+    text-align: center;
+    font-weight: bold;
+}
+*/ 
+
+.mat-column-col-id {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-col-fecha {
+    width: 32px;
+    /* text-align: center; */ 
+}
+
+.mat-column-col-descripcion {
+    font-style: italic;
+}
+
+.mat-column-col-vida_util {
+    /* width: 32px; */  
+    text-align: center;
+    /* ont-weight: bold; */ 
+}
+
+.mat-column-col-valor_adicion {
+    /* width: 32px; */  
+    text-align: center;
+    /* ont-weight: bold; */ 
+}

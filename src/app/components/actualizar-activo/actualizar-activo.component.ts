@@ -55,7 +55,7 @@ export class ActualizarActivoComponent implements OnInit {
       desincorporado :[this.activo.desincorporado],     
     });
 
-  }
+  }  // constructor(). 
 
   ngOnInit(): void {
    // throw new Error('Method not implemented.');

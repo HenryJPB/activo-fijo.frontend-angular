@@ -46,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DetalleActivoComponent } from './components/detalle-activo/detalle-activo.component';
 import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
 import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
+import { ListarAdicionesComponent } from './components/listar-adiciones/listar-adiciones.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CrearActivoComponent } from './components/crear-activo/crear-activo.com
     UploadImagenComponent,
     DetalleActivoComponent,
     ActualizarActivoComponent,
-    CrearActivoComponent
+    CrearActivoComponent,
+    ListarAdicionesComponent
   ],
   imports: [
     BrowserModule,
