@@ -5,6 +5,9 @@ import { Activo } from 'src/modelos/Activo';
 import { Ubicacion } from 'src/modelos/Ubicacion';
 import { UbicacionService } from 'src/app/servicios/ubicacion.service';
 import { FormControl } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
+
+
 // 
 /*
 import {MatInputModule} from '@angular/material/input';
@@ -17,9 +20,12 @@ import {FormsModule} from '@angular/forms';
   selector: 'app-upload-imagen',
   templateUrl: './upload-imagen.component.html',
   styleUrls: ['./upload-imagen.component.css'],
-  //standalone: true,
+  //standalone: true,   // ERROR!!!!
   //imports: [FormsModule, MatFormFieldModule, MatSelectModule, NgFor, MatInputModule],
+  //standalone: true,   // ERROR!!!!!
+  //imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule],
 })
+
 export class UploadImagenComponent implements OnInit {
 
   activo : any = Activo;  
@@ -38,7 +44,12 @@ export class UploadImagenComponent implements OnInit {
   // ubicacionSelect = new Option( "INFORMATICA","DEPARTAMENTO DE INFORMATICA"); 
   ubicacionSelectControl = new FormControl( this.ubicacionSelect );    // ?????
 
-  constructor( private sanitizer : DomSanitizer, private _activo : ActivoService, private _ubicacion : UbicacionService ) {} 
+  fecha = new FormControl( new Date("2022-09-27") );
+
+  constructor( private sanitizer : DomSanitizer, private _activo : ActivoService, private _ubicacion : UbicacionService,
+                 private dateAdapter: DateAdapter<Date> ) {
+      this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy .. doc: https://stackoverflow.com/questions/55721254/how-to-change-mat-datepicker-date-format-to-dd-mm-yyyy-in-simplest-way 
+  } 
 
   ngOnInit(): void {
     /* Prueba: exitosa 💪  

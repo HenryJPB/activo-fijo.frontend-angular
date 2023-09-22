@@ -10,6 +10,9 @@ import { DetalleActivoComponent } from './components/detalle-activo/detalle-acti
 import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
 import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
 import { ListarAdicionesComponent } from './components/listar-adiciones/listar-adiciones.component';
+import { DetalleAdicionComponent } from './components/detalle-adicion/detalle-adicion.component';
+import { CrearAdicionComponent } from './components/crear-adicion/crear-adicion.component';
+import { ActualizarAdicionComponent } from './components/actualizar-adicion/actualizar-adicion.component';
 
 const routes: Routes = [
   { path: '', component: PagBienvenidaComponent },
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'actualizar-activo/:id/:codigo_ubic', component: ActualizarActivoComponent }, 
   { path: 'crear-activo', component: CrearActivoComponent }, 
   { path: 'listar-adiciones/:codigo_activo/:descripcion', component: ListarAdicionesComponent }, 
+  { path: 'detalle-adicion/:id/:codigo_activo/:descripcion', component: DetalleAdicionComponent },    
+  { path: 'crear-adicion/:codigo_activo/:descripcion', component: CrearAdicionComponent }, 
+  { path: 'actualizar-adicion/:codigo_activo/:id', component: ActualizarAdicionComponent},   
   { path: 'upload-imagen', component: UploadImagenComponent },    
   { path: 'pruebame', component: PruebameComponent }, 
   { path: '**', redirectTo: '', pathMatch: 'full' }

@@ -71,8 +71,7 @@ export class ActivoService {
   
   //este metodo sirve para obtener o buscar un registro
   getActivoPorId( id:number ):Observable<Activo>{
-    const URL = this.baseURL + "/activos/buscar/"+id; 
-    //console.log("URL="+URL);  
+    const URL = this.baseURL + "/activos/buscar/"+id;  
     return this._httpClient.get<Activo>(`${URL}`);
   }
 

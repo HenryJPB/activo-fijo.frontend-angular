@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdicionService } from 'src/app/servicios/adicion.service';
 import { Adicion } from 'src/modelos/Adicion';
 
@@ -42,7 +42,7 @@ export class ListarAdicionesComponent implements OnInit {
   codigo_activo = "";  
   descripcion = "";    
 
-  constructor( private _adicion: AdicionService, private route: ActivatedRoute )  {} 
+  constructor( private _adicion: AdicionService, private route: ActivatedRoute, private router: Router )  {} 
 
   ngOnInit(): void {
     this.codigo_activo = this.route.snapshot.params['codigo_activo']; 
@@ -61,18 +61,21 @@ export class ListarAdicionesComponent implements OnInit {
 
 
   //--------------------------------------------------------------------
-  detalle() {
+  detalle( id: number ) {
     console.log('Display detalle de la adicion!'); 
+    this.router.navigate(['detalle-adicion',id,this.codigo_activo,this.descripcion]);  
   }
 
   //--------------------------------------------------------------------
-  editar() {
+  editar( id: number) {
     console.log('Editar adicion!'); 
+    this.router.navigate([]);  
   }
 
   //--------------------------------------------------------------------
-  eliminar() {
-    console.log('Eliminae adicion!');  
+  eliminar( id: number ) {
+    console.log('Eliminame adicion!');  
+    //  this.router.navigate([]);  
   }
 
 }

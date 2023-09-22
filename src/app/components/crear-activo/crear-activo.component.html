@@ -117,7 +117,7 @@
                           </div>
                       </div>
 
-                      <!-- Observacion -->
+                      <!-- Observacion 
                       <div class="row mb-2">
                         <div>
                             <label for="inputObservacion" class="col-sm-2 col-form-label"><h3>Observacion:</h3></label>
@@ -125,6 +125,19 @@
                               <input type="text" class="form-control" id="inputObservacion" placeholder="Observacion" formControlName="observacion" [(ngModel)]="activo.observacion">
                               <span class="text-danger" *ngIf="activoForm.get('observacion')?.hasError('required') && activoForm.get('observacion')?.touched" ><strong>Observacion obligatorio</strong></span>
                             </div>
+                        </div>
+                      </div>
+                      -->
+                      
+                      <!-- Observacion -->
+                      <div class="row mb-2">
+                        <!-- 
+                        <label for="inputObservacion" class="form-label"><h3>Observacion:</h3></label>
+                        -->
+                        <div class="form-group purple-border">
+                          <label for="exampleFormControlTextarea4"><h3>Observacion:</h3></label>
+                          <textarea class="form-control" id="inputObservacion" rows="2" placeholder="Observacion" formControlName="observacion" [(ngModel)]="activo.observacion" ></textarea>
+                          <label for="inputObservacion" class="form-label"> </label> <!-- Asi intencionalmente para dejara linea en blanco -->
                         </div>
                       </div>
 

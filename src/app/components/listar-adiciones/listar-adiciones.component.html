@@ -16,7 +16,7 @@
               <label class="form-label"> {{ descripcion }} </label> 
             </div>
             <div class="col-sm-9">
-              <button class="btn btn-success float-end" routerLink="/crear-activo">CREAR ADICION</button>
+              <button class="btn btn-success float-end" routerLink="/crear-adicion/{{ codigo_activo }}/{{ descripcion }}">CREAR ADICION</button>
               <button class="btn btn-warning float-end" routerLink="/pruebame">IMPRIMIR</button>
             </div>
 
@@ -67,13 +67,13 @@
               <th mat-header-cell *matHeaderCellDef matColumnDef="acciones">Accion</th>
               <mat-cell *matCellDef="let element;">
                   <!-- ***Abrir tab en una nueva pestaña 👆 👇 👍 ✔️ 👈 👉 // https://www.piliapp.com/emoji/list/hand/  -->     
-                  <button title="Ver detalle" mat-icon-button (click)="detalle()">
+                  <button title="Ver detalle" mat-icon-button (click)="detalle( element.id )">
                     <mat-icon>aspect_ratio</mat-icon>    
                   </button>
-                  <button title="Eliminar" mat-icon-button (click)="eliminar()" >
+                  <button title="Eliminar" mat-icon-button (click)="eliminar( element.id )" >
                     <mat-icon color="warn" >delete</mat-icon>
                   </button>
-                  <button title="Editar" mat-icon-button (click)="editar()" >
+                  <button title="Editar" mat-icon-button (click)="editar( element.id )" >
                     <mat-icon color="primary" >edit</mat-icon>
                   </button>
               </mat-cell>
@@ -82,7 +82,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-
+        <button routerLink="/listar-activos" class="btn btn-primary btn-lg float-star">VOLVER</button> 
       </div>
     </div>
 </div> 

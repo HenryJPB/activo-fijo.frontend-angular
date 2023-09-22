@@ -20,11 +20,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';  
 import { MatCheckboxModule}  from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+// 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';   
 import { HttpClientModule } from '@angular/common/http';
 // Instalar FormControl, checa 👇.
@@ -39,14 +47,13 @@ import { HeaderComponent } from './compartido/header/header.component';
 import { FooterComponent } from './compartido/footer/footer.component';
 import { PagBienvenidaComponent } from './components/pag-bienvenida/pag-bienvenida.component';
 import { UploadImagenComponent } from './components/upload-imagen/upload-imagen.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
 import { DetalleActivoComponent } from './components/detalle-activo/detalle-activo.component';
 import { ActualizarActivoComponent } from './components/actualizar-activo/actualizar-activo.component';
 import { CrearActivoComponent } from './components/crear-activo/crear-activo.component';
 import { ListarAdicionesComponent } from './components/listar-adiciones/listar-adiciones.component';
+import { DetalleAdicionComponent } from './components/detalle-adicion/detalle-adicion.component';
+import { CrearAdicionComponent } from './components/crear-adicion/crear-adicion.component';
+import { ActualizarAdicionComponent } from './components/actualizar-adicion/actualizar-adicion.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +69,10 @@ import { ListarAdicionesComponent } from './components/listar-adiciones/listar-a
     DetalleActivoComponent,
     ActualizarActivoComponent,
     CrearActivoComponent,
-    ListarAdicionesComponent
+    ListarAdicionesComponent,
+    DetalleAdicionComponent,
+    CrearAdicionComponent,
+    ActualizarAdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +91,8 @@ import { ListarAdicionesComponent } from './components/listar-adiciones/listar-a
     MatSelectModule, 
     FormsModule, 
     MatRippleModule,
+    MatDatepickerModule, 
+    MatNativeDateModule,   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,7 +23,7 @@
 <!--  Correcto 👇
 <button class="btn btn-primary" (click)="guardarImagenUbic()">Guardar imagen (Ubic)</button>
 -->
-
+<hr> 
 <div> 
     <button type="text" [disabled]="" class="btn btn-info" (click)="getImagenBD()">
         Get imagen from MySQL DB
@@ -35,6 +35,7 @@
          -->
     </div>
 </div>
+<hr> 
 <!-- https://material.angular.io/components/select/examples -->
 <div>
     <!-- 👍 --> 
@@ -62,7 +63,17 @@
 <div>
     <button class="btn btn-primary" (click)="checkSeleccion( ubicacionSelect )">Check seleccion</button>
 </div>
-
-
-
+<!-- Uso de MatDatePicker -->
+<hr> 
+<div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker3" placeholder="Value binding" [formControl]="fecha" >
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field> <!-- 'MatDatePicker' fue inyectada en import 'MatDatepickerModule', 
+                            'MatNativeDateModule'  en 'app.module.ts'   
+                        doc: https://stackoverflow.com/questions/75031296/error-ng8002-cant-bind-to-matdatepicker-since-it-isnt-a-known-property-of 
+                       -->
+    <p> Selected Fecha = : {{ fecha.value }} </p>  
+ </div>
 

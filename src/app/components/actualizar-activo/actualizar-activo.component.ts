@@ -22,7 +22,6 @@ const ACTIVO_DATA: Activo[] = [
 
 export class ActualizarActivoComponent implements OnInit {
 
-
   //activo! : Activo;     // '!' va a tomar cualquier valor excepto 'null' or 'undefined'   
   activo = ACTIVO_INI;  
   ubicacion = new Ubicacion("","");  

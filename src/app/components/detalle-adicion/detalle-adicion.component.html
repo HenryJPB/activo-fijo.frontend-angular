@@ -1,0 +1,45 @@
+<!-- 
+<p>detalle-adicion works!</p>
+-->
+<div class="container">
+    <!-- Content here -->
+    <div class="card">
+        <div class="card-header mt-3">
+             <h3 class="font-weight-bold"><strong> /HOME </strong> <strong class="text-success">/ACTIVO/DETALLES:</strong> </h3> <!-- 👍 -->
+        </div>
+        <div class="card-body">
+            <div class="mat-elevation-z8">
+                <h1 class="display-1">DETALLES DE LA ADICION y/o MEJORAS</h1> 
+
+                <div class="row ms-3"> 
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Activo</b> : <label class="text-info fw-bold" > {{ descripcion }} </label> </label>
+                    </div>
+    
+                    <div class="col-md-9">
+                        <label class="form-label"><b>Fecha</b> <label class="text-success fw-bold" >: {{ adicion?.fecha | date: 'dd/MM/y' }}  </label> </label> 
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Descripcion</b>: {{ adicion?.descripcion  }} </label>
+                    </div>
+                </div>
+
+                <div class="row ms-3">
+
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Vida util</b> : {{ adicion?.vida_util }} </label> 
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Valor adicion / mejora</b> : {{ adicion?.valor_adicion  }} </label> 
+                    </div>
+        
+                </div>
+                
+                <button routerLink="/listar-adiciones/{{codigo_activo}}/{{descripcion}}" class="btn btn-primary btn-lg float-star">VOLVER</button>
+            </div>  
+        </div>
+    </div>
+</div>
+
