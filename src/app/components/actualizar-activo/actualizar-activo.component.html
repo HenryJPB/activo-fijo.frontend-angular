@@ -16,7 +16,7 @@
                     <div class="row mb-2">
                         <label for="inputCodActivo" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Cod Activo:</label> </h3> </label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo" (ngModelChange)="activo.codigo_activo = $event.toUpperCase()"  >    
+                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo" (ngModelChange)="activo.codigo_activo = $event.toUpperCase()" [readOnly]="true"  >    
                           <span class="text-danger" *ngIf="activoForm.get('codigo_activo')?.hasError('required') && activoForm.get('codigo_activo')?.touched" ><strong>Codigo activo obligatorio</strong></span>  
                         </div>
                     </div>

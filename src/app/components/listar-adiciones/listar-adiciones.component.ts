@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdicionService } from 'src/app/servicios/adicion.service';
 import { Adicion } from 'src/modelos/Adicion';
+import Swal from 'sweetalert2';
 
 // https://material.angular.io/components/table/overview 
 // iniciar ejercicio---------------------------------------------------------
@@ -62,20 +63,41 @@ export class ListarAdicionesComponent implements OnInit {
 
   //--------------------------------------------------------------------
   detalle( id: number ) {
-    console.log('Display detalle de la adicion!'); 
+    //console.log('Display detalle de la adicion!'); 
     this.router.navigate(['detalle-adicion',id,this.codigo_activo,this.descripcion]);  
   }
 
   //--------------------------------------------------------------------
   editar( id: number) {
-    console.log('Editar adicion!'); 
-    this.router.navigate([]);  
+    //console.log('Editar adicion!'); 
+    //{ path: 'actualizar-adicion/:codigo_activo/:descripcion/:id', component: ActualizarAdicionComponent},    
+    this.router.navigate(['actualizar-adicion',this.codigo_activo,this.descripcion,id]);  
   }
 
-  //--------------------------------------------------------------------
-  eliminar( id: number ) {
-    console.log('Eliminame adicion!');  
-    //  this.router.navigate([]);  
-  }
+  //---------------------------------------------------------------------
+  // check: https://sweetalert2.github.io/
+  //---------------------------------------------------------------------
+  eliminar( id:number ) {
+    Swal.fire({
+      title: 'Seguro?',
+      text: "ATENCION: accion no reversible!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._adicion.eliminar( this.codigo_activo, id).subscribe( response => { 
+            this.getAdiciones( this.codigo_activo );   
+            Swal.fire(
+              'Eliminado!',
+              'Registró eliminado.',
+              'success'
+            ) } );    
 
-}
+      }  // if (result.isConfirmed)
+    });   
+  }  // eliminar().  
+  
+}  // export class ListarAdicionesComponent 

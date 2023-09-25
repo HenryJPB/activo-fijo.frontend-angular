@@ -21,7 +21,7 @@ export class CrearAdicionComponent implements OnInit {
   adicionForm! : FormGroup;
   param_codigo_activo = "";
   param_descripcion = "";    
-  fecha_aux = new FormControl( new Date(this.adicion.fecha) );
+  fecha_aux = new FormControl( new Date(this.adicion.fecha) );  // ?? Ejemplo de uso FormControl. 
 
   constructor(  private fb: FormBuilder, private _adicion: AdicionService, private route : ActivatedRoute, private dateAdapter: DateAdapter<Date>,
                 private router : Router )
@@ -56,8 +56,9 @@ export class CrearAdicionComponent implements OnInit {
     //console.log( adicion );  
     // this._adicion.guardarAdicion(adicion);      // Asi NO!!, t volvistes crazy ??'
     //this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{} ); 
-    this._adicion.guardar( adicion ).subscribe( response =>{} );
-    this.retornar();   
+    this._adicion.guardar( adicion ).subscribe( response =>{
+      this.retornar();   
+    } );   
   } // guardar()
 
    //-------------------------------------------------------------

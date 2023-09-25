@@ -146,7 +146,7 @@ export class CrearActivoComponent implements OnInit {
         } // if ( activo.ubicacion 
         const desincorporado = activo.desincorporado.toString();  
         if ( desincorporado === "true" || desincorporado === "false" ) {
-            console.log("BOOLEAN: " + desincorporado ); 
+            //console.log("BOOLEAN: " + desincorporado ); 
             desincorporado === "true" ? activo.desincorporado = 1 : activo.desincorporado = 0   
         } // if ( desincorporado
         //console.log( activo.desincorporado ); 
@@ -164,8 +164,23 @@ export class CrearActivoComponent implements OnInit {
         //console.log( activo.imagen );    
         //console.log("Al final esta es la ubicacio="+ activo.ubicacion.codigo_ubic + " " + activo.ubicacion.descripcion );   
         /***/
-        this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{} ); 
-        this.retornar();
+        const codigo_activo_aux = activo.codigo_activo; 
+        this._activo.getActivoPorCodActivo( codigo_activo_aux ).subscribe( response =>{
+          if ( response !== null ) {  // 
+            //console.log(' INTENTAS DUPLICAR codigo_activo'); 
+            Swal.fire({
+              icon: 'error',
+              title: 'ATENCION 😞',
+              text: 'INTENTAS DUPLICAR el Codigo del activo!',
+              footer: ''
+            })
+          } else {
+            //console.log(' Sin rollo codigo_activo fino -- procede a guardar resistro');
+            this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{
+              this.retornar();
+            } );
+          } // if-else. 
+        } );
         //console.log("*****Update activo.Fin*********");
     } // if-else 
   } // guardarActivo().  

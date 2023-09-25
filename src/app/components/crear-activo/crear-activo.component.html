@@ -14,7 +14,7 @@
                     <div class="row mb-2">
                         <label for="inputCodActivo" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Cod Activo:</label> </h3> </label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo">    
+                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo" (ngModelChange)="activo.codigo_activo = $event.toUpperCase()" >    
                           <span class="text-danger" *ngIf="activoForm.get('codigo_activo')?.hasError('required') && activoForm.get('codigo_activo')?.touched" ><strong>Codigo activo obligatorio</strong></span>  
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="row mb-2">
                         <label for="inputDescripcion" class="col-sm-2 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="activo.descripcion">
+                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="activo.descripcion" (ngModelChange)="activo.descripcion = $event.toUpperCase()" >
                           <span class="text-danger" *ngIf="activoForm.get('descripcion')?.hasError('required') && activoForm.get('descripcion')?.touched" ><strong>Descripcion obligatorio</strong></span>
                         </div>
                     </div>

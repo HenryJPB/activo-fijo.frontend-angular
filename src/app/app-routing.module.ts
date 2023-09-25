@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'listar-adiciones/:codigo_activo/:descripcion', component: ListarAdicionesComponent }, 
   { path: 'detalle-adicion/:id/:codigo_activo/:descripcion', component: DetalleAdicionComponent },    
   { path: 'crear-adicion/:codigo_activo/:descripcion', component: CrearAdicionComponent }, 
-  { path: 'actualizar-adicion/:codigo_activo/:id', component: ActualizarAdicionComponent},   
+  { path: 'actualizar-adicion/:codigo_activo/:descripcion/:id', component: ActualizarAdicionComponent},   
   { path: 'upload-imagen', component: UploadImagenComponent },    
   { path: 'pruebame', component: PruebameComponent }, 
   { path: '**', redirectTo: '', pathMatch: 'full' }

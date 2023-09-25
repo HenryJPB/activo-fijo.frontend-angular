@@ -32,4 +32,10 @@ export class AdicionService {
     //return this._httpClient.post(`${URL}`, adicion ); 
   }
 
+  //-----------------------------------------------------------------------
+  eliminar( codigo_activo: string , id:number ) {
+    const URL = this.baseURL + "/adiciones/"+codigo_activo+"/"+id; 
+    return this._httpClient.delete( URL );  
+  } // eliminar().  
+
 } // export class AdicionService 

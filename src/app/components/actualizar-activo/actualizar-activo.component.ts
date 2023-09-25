@@ -92,10 +92,8 @@ export class ActualizarActivoComponent implements OnInit {
       }
       var srcBase64 = "data:image/jpeg;base64," + btoa(atob( s ) );      // as '.jpeg'  💪
       this.imgPrevisualizacion = srcBase64;   
-    });
-    console.log( "2" );
-    console.log( this.activo ); 
-  }
+    }); 
+  } 
 
   //---------------------------------------------------------------------------
   getUbicacionPorCod(codigo_ubic: any) {
@@ -209,8 +207,21 @@ export class ActualizarActivoComponent implements OnInit {
         //console.log( activo.imagen );    
         //console.log("Al final esta es la ubicacio="+ activo.ubicacion.codigo_ubic + " " + activo.ubicacion.descripcion );   
         /***/
-        this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{} ); 
-        this.retornar();
+        //--------------------------------------------------------------------------------------------------------------------
+        /* La siguiente rutina NO aplica para la opcion de Actualizar Registro xq este campo debe estar deshabilitado 'OJO'!! 
+        const codigo_activo_aux = activo.codigo_activo; 
+        this._activo.getActivoPorCodActivo( codigo_activo_aux ).subscribe( response =>{
+          if ( response !== null ) {  // 
+            console.log(' INTENTAS DUPLICAR codigo_activo'); 
+          } else {
+            console.log(' Sin rollo codigo_activo fino -- procede a guardar resistro');
+          }
+        } );  
+        */
+        //----------------------------------------------------------------------------------------------------------------------
+        this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{
+          this.retornar();
+        } ); 
         //console.log("*****Update activo.Fin*********");
     } // if-else 
   } // guardarActivo(). 

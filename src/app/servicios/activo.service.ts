@@ -69,9 +69,15 @@ export class ActivoService {
     return this._httpClient.post(`${URL}`,null); 
   }
   
-  //este metodo sirve para obtener o buscar un registro
+  //este metodo sirve para obtener o buscar un registro x id
   getActivoPorId( id:number ):Observable<Activo>{
-    const URL = this.baseURL + "/activos/buscar/"+id;  
+    const URL = this.baseURL + "/activos/buscarPorId/"+id;  
+    return this._httpClient.get<Activo>(`${URL}`);
+  }
+
+  //este metodo sirve para obtener o buscar un registro x codigoActivo
+  getActivoPorCodActivo( codigo_activo : string ):Observable<Activo>{
+    const URL = this.baseURL + "/activos/buscarPorCodigo/"+codigo_activo;  
     return this._httpClient.get<Activo>(`${URL}`);
   }
 
