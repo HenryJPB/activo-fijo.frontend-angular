@@ -39,7 +39,13 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 text-white rounded" >Consultar</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 text-white rounded" >Informes</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 text-white rounded" >Matenimiento</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 text-white rounded" routerLink="/upload-imagen">UpLoad imagen</a></li>
+                    <!-- [ngStyle]= ... *NO FUNCIONO* 
+                    <li class="nav-item mx-0 mx-lg-1" ]  [ngStyle]="{'visible' : 'hidden'}"></li> ><a class="nav-link py-3 px-0 px-lg-3 text-white rounded" routerLink="/upload-imagen" >UpLoad imagen</a></li>
+                    -- Tampoco funciona -- 
+                    <div [ngStyle]="{'visible' : 'hidden'}">
+                        <li class="nav-item mx-0 mx-lg-1"> <a class="nav-link py-3 px-0 px-lg-3 text-white rounded" routerLink="/upload-imagen" >UpLoad imagen</a></li>
+                    </div>
+                     -->
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 text-danger rounded" >Salir</a></li>
                 </ul>
             </div>
