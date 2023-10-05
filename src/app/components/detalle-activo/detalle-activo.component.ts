@@ -8,9 +8,9 @@ import { UbicacionService } from '../../servicios/ubicacion.service';
 
 const mi_imagen : any = [];  
 const ACTIVO_DATA: Activo[] = [
-  { id:0, codigo_activo:'INF-PC-01',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen : mi_imagen, nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+  { id:0, codigo_activo:'INF-PC-01',grupo:'MOBILIARIO Y EQUIPO DE OFICINA',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen : mi_imagen, nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
 ];
-const ACTIVO : Activo = { id:0, codigo_activo:'INF-PC-01',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen : mi_imagen, nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+const ACTIVO : Activo = { id:0, codigo_activo:'INF-PC-01',grupo:'',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen : mi_imagen, nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
 
 @Component({
   selector: 'app-detalle-activo',

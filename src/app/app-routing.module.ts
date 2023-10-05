@@ -13,16 +13,21 @@ import { ListarAdicionesComponent } from './components/listar-adiciones/listar-a
 import { DetalleAdicionComponent } from './components/detalle-adicion/detalle-adicion.component';
 import { CrearAdicionComponent } from './components/crear-adicion/crear-adicion.component';
 import { ActualizarAdicionComponent } from './components/actualizar-adicion/actualizar-adicion.component';
+import { CrearUbicacionComponent } from './components/crear-ubicacion/crear-ubicacion.component';
+import { ActualizarUbicacionComponent } from './components/actualizar-ubicacion/actualizar-ubicacion.component';
+import { DetalleUbicacionComponent } from './components/detalle-ubicacion/detalle-ubicacion.component';
 
 const routes: Routes = [
   { path: '', component: PagBienvenidaComponent },
   { path: 'pag-bienvenida', component: PagBienvenidaComponent },
   { path: 'listar-activos', component: ListarActivosComponent },
-  { path: 'listar-articulos', component: ListarArticulosComponent }, 
-  { path: 'listar-ubicaciones', component: ListarUbicacionesComponent }, 
   { path: 'detalle-activo/:id/:codigo_ubic', component: DetalleActivoComponent }, 
   { path: 'actualizar-activo/:id/:codigo_ubic', component: ActualizarActivoComponent }, 
   { path: 'crear-activo', component: CrearActivoComponent }, 
+  { path: 'listar-ubicaciones', component: ListarUbicacionesComponent }, 
+  { path: 'crear-ubicacion', component: CrearUbicacionComponent }, 
+  { path: 'actualizar-ubicacion/:codigo_ubic', component: ActualizarUbicacionComponent },    
+  { path: 'detalle-ubicacion/:codigo_ubic', component: DetalleUbicacionComponent },    
   { path: 'listar-adiciones/:codigo_activo/:descripcion', component: ListarAdicionesComponent }, 
   { path: 'detalle-adicion/:id/:codigo_activo/:descripcion', component: DetalleAdicionComponent },    
   { path: 'crear-adicion/:codigo_activo/:descripcion', component: CrearAdicionComponent }, 

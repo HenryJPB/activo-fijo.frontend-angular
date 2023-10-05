@@ -1,9 +1,12 @@
+import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { UbicacionService } from 'src/app/servicios/ubicacion.service';
 import { Ubicacion } from 'src/modelos/Ubicacion';
+import Swal from 'sweetalert2';
 
 // Check: https://www.youtube.com/watch?v=odzjhkUgZuM
 //const UBICACION_DATA: Ubicacion[] = [];
@@ -37,10 +40,9 @@ export class ListarUbicacionesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   
-  constructor( private _ubicacion : UbicacionService ) {} 
+  constructor( private _ubicacion : UbicacionService, private router : Router  ) {} 
 
   ngOnInit(): void {
-    //throw new Error('Method not implemented.');
     this.getUbicaciones();  
   }
 
@@ -84,16 +86,77 @@ export class ListarUbicacionesComponent implements OnInit {
     }
   }  // filtrar()
 
+  //---------------------------------------------------------------------------------------
   editar( codigo_ubic : number ) {
-    console.log("Editar registro No.: "+codigo_ubic+"*****");  
+    //console.log("Editar registro No.: "+codigo_ubic+"*****"); 
+    this.router.navigate( ['actualizar-ubicacion',codigo_ubic] ); 
   }
 
-  detalle( descripcion : string ) {
-    console.log("Ver detalle del registro: "+descripcion+"*****");  
+  //---------------------------------------------------------------------------------------
+  detalle( codigo_ubic : string ) {
+    //console.log("Ver detalle del registro: "+descripcion+"*****");  
+    this.router.navigate( ['detalle-ubicacion',codigo_ubic] ); 
   }
 
-  eliminar( descripcion : string ) {
-    console.log("Eliminar a: "+descripcion+"*****");  
-  }
+  //---------------------------------------------------------------------
+  // check: https://sweetalert2.github.io/
+  //---------------------------------------------------------------------
+  eliminar( codigo_ubic : string ) {
+    Swal.fire({
+      title: 'Seguro?',
+      text: "ATENCION: accion no reversible!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
+      this._ubicacion.eliminar( codigo_ubic ).subscribe( response => { 
+          // Ejemplo 'toJason' 👇    (( NO BORRAR )) 
+          //let a : [] = JSON.parse(JSON.stringify( response ) );  
+          // let map = new Map();
+          // map = response;   // Error ???    
+          // console.log(  response.toLocaleString().search("kk") );  // ??????????????????? 
+          // Ejemplo 'toJason' 👇  II parte  (( NO BORRAR ))
+          // console.log( JSON.parse(JSON.stringify( response ) ) );  
+          // console.log( a.values );   
+
+          this.getUbicaciones();  // *** 
+
+          /*
+          Object.keys(response).forEach( (key) => {    // Ejemplo 👍 👏👏
+            const valor = key;
+            console.log( valor );   
+          }); 
+          */   
+
+          Object.values(response).forEach( (value) => {  // 👍 👏👏 
+            //console.log( value );   
+            if ( value === true ) {
+              // console.log('Exito ELIMINADO exitoso!!!!'); 
+              Swal.fire(
+                'Eliminado!',
+                'Registró eliminado.',
+                'success'
+              );   
+            }  
+            else {  // value !== true
+              // console.log('ELIMINADO *NO* exitoso!!!!');    
+              Swal.fire({
+                icon: 'error',
+                title: 'ATENCION 😞',
+                text: 'Eliminacion NO procede porque hay activos registrados con esta ubicacion!.',
+                footer: ''
+              });
+            } // if-else  
+
+          } ); //  Object.values(response).
+           
+      } );    
+    }  // if (result.isConfirmed)
+   });   
+  }  // eliminar().  
 
 }  // class ListarUbicacionesComponent

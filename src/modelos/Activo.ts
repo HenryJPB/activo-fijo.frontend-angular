@@ -3,6 +3,7 @@ import { Ubicacion } from "./Ubicacion";
 export class Activo {
     id!: number;  
     codigo_activo! : string;  
+    grupo! : string;   
     descripcion! : string;
     ubicacion! : Ubicacion;  
     //imagen! : Blob;   
@@ -20,7 +21,7 @@ export class Activo {
     observacion! : string;  
     desincorporado! : number;   
 
-    constructor(  id: number, codigo_activo : string, descripcion : string, ubicacion : Ubicacion, 
+    constructor(  id: number, codigo_activo : string, grupo : string ,descripcion : string, ubicacion : Ubicacion, 
                    imagen : any [], nro_compra : string, marca : string, modelo : string,
                     serial : string, vida_util : number, valor_inicial : number, valor_rescate : number, 
                      valor_libro : number, depre_anual : number, depre_acum : number, observacion : string,   
@@ -28,6 +29,7 @@ export class Activo {
     {
         this.id = id;  
         this.codigo_activo = codigo_activo; 
+        this.grupo = grupo;    
         this.descripcion = descripcion; 
         this.ubicacion = ubicacion; 
         this.imagen = imagen; 

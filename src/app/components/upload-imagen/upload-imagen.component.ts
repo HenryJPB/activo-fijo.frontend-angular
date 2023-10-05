@@ -210,6 +210,7 @@ cargarDatos();
   guardarImagenActivo() {
     const id = 0;   // Valor dumy. Remember q este atributo es generada x autoincremento en la BD. 
     const codigo_activo = "PRUEBA-02";
+    const grupo = "TERRENOS";  
     const descripcion = "COMPUTADOR DE PRUEBA 02";   
     const ubicacion = new Ubicacion("CONTROL-CALIDAD","DEPARTAMENTO DE CTRL. CALIDAD");  
     // 
@@ -238,7 +239,7 @@ cargarDatos();
     const observacion = "PC de PRUEBA2, COLOR: gris, s/DVD.";  
     const desincorporado = 0;  
     //
-    const activo = new Activo(id, codigo_activo, descripcion,ubicacion, this.imagenes ,nro_compra, 
+    const activo = new Activo(id, codigo_activo, grupo, descripcion, ubicacion, this.imagenes ,nro_compra, 
       marca, modelo, serial, vida_util, valor_inicial, valor_rescate, valor_libro, depre_anual, 
        depre_acum, observacion, desincorporado );
     console.log("metodo: guardarImagen 👇:");
@@ -252,7 +253,8 @@ cargarDatos();
   //--------------------------------------------------------------------
   guardarImagenUbic() {
     const u = new Ubicacion("ELIMINAME","OFICINA DE PRUEBA");  
-    this._ubicacion.guardarUbicacion(u).subscribe( registro =>{} ); 
+    // this._ubicacion.guardar("EJEMPLO",u).subscribe( registro =>{} ); 
+    this._ubicacion.guardar( u ).subscribe( registro =>{} ); 
   }
 
   //--------------------------------------------------------------------

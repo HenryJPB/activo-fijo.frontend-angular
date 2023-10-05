@@ -1,0 +1,46 @@
+<!-- 
+<p>actualizar-ubicacion works!</p>
+-->
+<div class="container mt-5">
+    <div class="row"> 
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+
+                <div class="card-header mt-3 text-center">
+                  <span class="titulo" > ACTUALIZAR UBICACION </span>
+                </div>
+          
+                <div class="card-body">
+                  <form [formGroup]="ubicacionForm"  (ngSubmit)="guardar( ubicacion )" >
+
+                    <div class="row mb-2">
+                        <!-- Codigo ubic -->
+                        <label for="inputCodUbic" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Codigo :</label> </h3> </label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo ubicacion" formControlName="codigo_ubic" [(ngModel)]="ubicacion.codigo_ubic" (ngModelChange)="ubicacion.codigo_ubic = $event.toUpperCase()" [readOnly]="true" />    
+                          <span class="text-danger" *ngIf="ubicacionForm.get('codigo_ubic')?.hasError('required') && ubicacionForm.get('codigo_ubic')?.touched" ><strong>Codigo ubicacion obligatorio</strong></span>  
+                        </div>
+
+                    </div>
+
+                    <!-- Descripcion --> 
+                    <div class="row mb-4">
+                        <label for="inputDescripcion" class="col-sm-2 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="ubicacion.descripcion" (ngModelChange)="ubicacion.descripcion = $event.toUpperCase()" /> 
+                          <span class="text-danger" *ngIf="ubicacionForm.get('ubicacion.descripcion')?.hasError('required') && ubicacionForm.get('ubicacion.descripcion')?.touched" ><strong>Descripcion obligatorio</strong></span>
+                        </div>
+                    </div>      
+
+
+                    <button routerLink="/listar-ubicaciones" class="btn btn-secondary btn-lg float-star">VOLVER/CANCELAR</button>
+                    
+                    <button type="submit" [disabled]="ubicacionForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
+
+                  </form>
+
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

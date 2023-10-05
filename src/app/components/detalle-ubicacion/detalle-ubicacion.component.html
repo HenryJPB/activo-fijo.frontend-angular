@@ -1,0 +1,32 @@
+<!-- 
+<p>detalle-ubicacion works!</p>
+-->
+<div class="container">
+    <!-- Content here -->
+    <div class="card">
+        <div class="card-header mt-3">
+             <h3 class="font-weight-bold"><strong> /HOME </strong> <strong class="text-success">/UBICACION/DETALLES:</strong> </h3> <!-- 👍 -->
+        </div>
+        <div class="card-body">
+            <div class="mat-elevation-z8">
+                <h1 class="display-1">DETALLES DE LA UBICACION</h1> 
+
+                <div class="row ms-3"> 
+                    <div class="col-md-3">
+                        <label class="form-label"><b>Codigo ubic</b> : <label class="text-info fw-bold" > {{ ubicacion.codigo_ubic }} </label> </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label"><b>Descripcion</b>: {{ ubicacion.descripcion  }} </label>
+                    </div>
+                </div>
+                <!--    *Ejemplo*   
+                <button routerLink="/listar-adiciones/{{codigo_activo}}/{{descripcion}}" class="btn btn-primary btn-lg float-star">VOLVER</button>
+                -->
+                <button routerLink="/listar-ubicaciones" class="btn btn-primary btn-lg float-star">VOLVER</button>
+            </div>  
+        </div>
+    </div>
+</div>
+
+

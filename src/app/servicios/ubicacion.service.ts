@@ -30,28 +30,26 @@ export class UbicacionService {
     return this._httpClient.get<Ubicacion[]>(URL);  
   } // getUbicaciones()
   
+  //------------------------------------------------------------------------
   getUbicacionesLike( filtro : string ):Observable<Ubicacion[]> {
     var URL = this.baseURL+"/ubicaciones/like/"+filtro;
     return this._httpClient.get<Ubicacion[]>(URL); 
   } 
 
-  //
-  guardarUbicacion( ubicacion : Ubicacion ):Observable<Object> {
-    const URL = this.baseURL + "/ubicaciones"; 
-    const id = "ELIMINAME";  
+  //------------------------------------------------------------------------
+  guardar( ubicacion : Ubicacion ):Observable<Object> {
+    const URL = this.baseURL + "/ubicaciones" 
     //return this._httpClient.post(`${this.baseURL}`,activo ); 
     //return this._httpClient.post(URL,activo); 
-    //return this._httpClient.post(`${URL}`, ubicacion );
-    return this._httpClient.post(`${URL}/${id}`, ubicacion );
+    return this._httpClient.post(`${URL}`, ubicacion );
+    //return this._httpClient.post(`${URL}/${id}`, ubicacion );
   }
 
-  //---------------------------------------------------------------------
-  actualizarUbicacion( ubicacion : Ubicacion ): Observable<Object> {
-    const URL = this.baseURL + "/ubicaciones"; 
-    const id = "ELIMINAME";   
-    //console.log("*****Actualizar trabajador +"+id+"****************"); 
-    return this._httpClient.put(`${URL}/${id}`,ubicacion );  
-  }
+  //-----------------------------------------------------------------------
+  eliminar( codigo_ubic: string ) {
+    const URL = this.baseURL + "/ubicaciones/"+codigo_ubic; 
+    return this._httpClient.delete( URL );  
+  } // eliminar().  
 
   //----------------------------------------------------------------------
   getUbicacionCod( codigo_ubic : string ):Observable<Ubicacion> {

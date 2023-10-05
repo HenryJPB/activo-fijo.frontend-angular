@@ -54,6 +54,9 @@ import { ListarAdicionesComponent } from './components/listar-adiciones/listar-a
 import { DetalleAdicionComponent } from './components/detalle-adicion/detalle-adicion.component';
 import { CrearAdicionComponent } from './components/crear-adicion/crear-adicion.component';
 import { ActualizarAdicionComponent } from './components/actualizar-adicion/actualizar-adicion.component';
+import { CrearUbicacionComponent } from './components/crear-ubicacion/crear-ubicacion.component';
+import { ActualizarUbicacionComponent } from './components/actualizar-ubicacion/actualizar-ubicacion.component';
+import { DetalleUbicacionComponent } from './components/detalle-ubicacion/detalle-ubicacion.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { ActualizarAdicionComponent } from './components/actualizar-adicion/actu
     ListarAdicionesComponent,
     DetalleAdicionComponent,
     CrearAdicionComponent,
-    ActualizarAdicionComponent
+    ActualizarAdicionComponent,
+    CrearUbicacionComponent,
+    ActualizarUbicacionComponent,
+    DetalleUbicacionComponent
   ],
   imports: [
     BrowserModule,

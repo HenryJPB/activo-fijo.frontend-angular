@@ -61,9 +61,9 @@ export class CrearAdicionComponent implements OnInit {
     } );   
   } // guardar()
 
-   //-------------------------------------------------------------
-   retornar() {
+  //-------------------------------------------------------------
+  retornar() {
     this.router.navigate(["/listar-adiciones",this.param_codigo_activo,this.param_descripcion]); 
-  }
+  }  // retornar().  
 
 } // export class CrearAdicionComponent 

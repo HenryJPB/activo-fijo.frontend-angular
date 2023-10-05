@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivoService } from 'src/app/servicios/activo.service';
+import { GrupoService } from 'src/app/servicios/grupo.service';
 import { LibHpService } from 'src/app/servicios/lib-hp.service';
 import { UbicacionService } from 'src/app/servicios/ubicacion.service';
 import { Activo } from 'src/modelos/Activo';
+import { Grupo } from 'src/modelos/Grupo';
 import { Ubicacion } from 'src/modelos/Ubicacion';
 import Swal from 'sweetalert2';
 
-const ACTIVO_INI : Activo =  { id:0, codigo_activo:'INF-PC-01',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen: [0] ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+const ACTIVO_INI : Activo =  { id:0, codigo_activo:'INF-PC-01',grupo:'',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen: [0] ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+
+const GRUPO_INI : Grupo = { id:0, descripcion : '', cuenta_abono : '', cuenta_cargo: '', tipo_activo: '' }
 
 const ACTIVO_DATA: Activo[] = [
-  { id:0, codigo_activo:'INF-PC-01',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen: [] ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+  { id:0, codigo_activo:'INF-PC-01',grupo:'MOBILIARIO Y EQUIPO DE OFICINA',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen: [] ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
 ];
 
 @Component({
@@ -24,6 +28,8 @@ export class ActualizarActivoComponent implements OnInit {
 
   //activo! : Activo;     // '!' va a tomar cualquier valor excepto 'null' or 'undefined'   
   activo = ACTIVO_INI;  
+  arr_grupo : Grupo[] = []; 
+  grupo = GRUPO_INI;    
   ubicacion = new Ubicacion("","");  
   activoForm! : FormGroup;
 
@@ -35,12 +41,13 @@ export class ActualizarActivoComponent implements OnInit {
   imagenes : any = [];  
   imgPrevisualizacion! : string;
 
-  constructor( private fb: FormBuilder, private _activo: ActivoService, 
+  constructor( private fb: FormBuilder, private _activo: ActivoService, private _grupo: GrupoService, 
     private _ubicacion : UbicacionService, private route : ActivatedRoute,
     private _libHp : LibHpService, private router : Router  ) {
 
     this.activoForm = this.fb.group({
       codigo_activo: [this.activo.codigo_activo,Validators.required],
+      grupo:[this.activo.grupo,Validators.required],
       descripcion: [this.activo.descripcion,Validators.required],
       // ubicacion: [this.activo.ubicacion,Validators.required],    // Correcto, confirma validacion !!
       ubicacion: [this.activo.ubicacion],
@@ -63,6 +70,7 @@ export class ActualizarActivoComponent implements OnInit {
     const codigo_ubic =  this.route.snapshot.params['codigo_ubic'];
     // 
     this.getActivoPorId( id );  
+    this.getGrupo();   
     //console.log( id );
     //console.log( codigo_ubic );
     //console.log( this.activo?.ubicacion.descripcion ); // 'undefined' ????????
@@ -94,6 +102,14 @@ export class ActualizarActivoComponent implements OnInit {
       this.imgPrevisualizacion = srcBase64;   
     }); 
   } 
+
+  //--------------------------------------------------------------------
+  private getGrupo() {
+    this._grupo.getGrupo().subscribe( response => {
+      this.arr_grupo = response;  
+      //console.log( this.grupo );      
+    } ); 
+  } // getGrupo
 
   //---------------------------------------------------------------------------
   getUbicacionPorCod(codigo_ubic: any) {
@@ -218,10 +234,13 @@ export class ActualizarActivoComponent implements OnInit {
           }
         } );  
         */
+        //activo.grupo = this.grupo.descripcion;
         //----------------------------------------------------------------------------------------------------------------------
         this._activo.guardar( activo, activo.ubicacion.codigo_ubic ).subscribe( registro =>{
           this.retornar();
-        } ); 
+        });
+        //    
+        // console.log( activo );   
         //console.log("*****Update activo.Fin*********");
     } // if-else 
   } // guardarActivo(). 

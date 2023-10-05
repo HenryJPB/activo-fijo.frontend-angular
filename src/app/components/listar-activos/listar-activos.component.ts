@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ActivoService } from 'src/app/servicios/activo.service';
-import { AdicionService } from 'src/app/servicios/adicion.service';
 import { Activo } from 'src/modelos/Activo';
 import Swal from 'sweetalert2';
 
@@ -21,7 +20,7 @@ const ACTIVO_DATA: Activo[] = [
 ];
 */
 const ACTIVO_DATA: Activo[] = [
-  { id:0, codigo_activo:'INF-PC-01',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen:mi_imagen_byte ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
+  { id:0, codigo_activo:'INF-PC-01',grupo:'',ubicacion:{codigo_ubic:'INFORMATICA',descripcion:'INFORMATICA'},descripcion:'PC INFORMATICA GENERICO 01',imagen:mi_imagen_byte ,nro_compra:'S/N',marca:'S/M',modelo:'DESKTOP',serial:'123456789',vida_util: 0, valor_inicial: 0, valor_rescate: 0, valor_libro: 0, depre_anual : 0, depre_acum : 0, observacion: '*importante*', desincorporado:0 }
 ];
 
 @Component({
@@ -134,16 +133,43 @@ export class ListarActivosComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this._activo.eliminar(id).subscribe( response => { 
-            this.getActivos();   
-            Swal.fire(
-              'Eliminado!',
-              'Registró eliminado.',
-              'success'
-            ) } );    
+
+          this.getActivos();   
+            
+          /*
+          Object.keys(response).forEach( (key) => {    // Ejemplo 👍 👏👏
+            const valor = key;
+            console.log( valor );   
+          }); 
+          */   
+
+          Object.values(response).forEach( (value) => {  // 👍 👏👏 
+            //console.log( value );   
+            if ( value === true ) {
+              // console.log('Exito ELIMINADO exitoso!!!!'); 
+              Swal.fire(
+                'Eliminado!',
+                'Registró eliminado.',
+                'success'
+              );   
+            }  
+            else {  // value !== true
+              // console.log('ELIMINADO *NO* exitoso!!!!');    
+              Swal.fire({
+                icon: 'error',
+                title: 'ATENCION 😞',
+                text: 'Eliminacion NO procede porque hay Adiciones / Mejoras registrada(s) con este Activo!.',
+                footer: ''
+              });
+            } // if-else  
+
+          } ); //  Object.values(response).
+
+        } );    
 
       }  // if (result.isConfirmed)
     });   
-  }  // eliminarEmpleado().  
+  }  // eliminar().  
   
   //------------------------------------------------------------------------
   editar( id: number, codigo_ubic : string ) {
