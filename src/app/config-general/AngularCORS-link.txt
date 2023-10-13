@@ -1,0 +1,46 @@
+Barquisimeto: 12 de octubre 2023 16:25 
+--------------------------------------------------------------
+I. Proxy Requests to Enable CORS in Angular desde el FrontEnd:
+--------------------------------------------------------------
+doc: https://www.stackhawk.com/blog/angular-cors-guide-examples-and-how-to-enable-it/
+
+ERROR: "Solicitud desde otro origen bloqueada: la política de mismo origen impide leer el recurso remoto en http://localhost:8090/test/databases (razón: falta la cabecera CORS 'Access-Control-Allow-Origin')."  
+
+SOLUCION: Proxy Requests to Enable CORS in Angular 
+
+ i. create a new file called proxy.conf.json ( Inside the src folder ) 
+ ii. Inside the proxy.conf.json file, add the following code:
+    {
+    "/api": {
+        <!-- Ejemplo: "target": "http://localhost:5000", -->
+        "target": "http://desica.gestion-act-fijos:8090",  
+        "secure": false
+        }
+    }
+ iii. Next, we need to inform Angular about this proxy configuration, 
+      adding a proxyConfig option inside our angular.json file: 
+      ...
+        "architect": {
+        "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "options": {
+        "browserTarget": "your-application-name:build",
+        "proxyConfig": "src/proxy.conf.json" ( 👈 Aqu el piquete )  
+        },
+
+ iv. ( new terminal ): 
+ $ ng serve  ( 👈 localhost )
+                o, 
+ $ ng serve --host=desica.gestion-act-fijos
+    link: http://193.168.0.57:4200  ( 👈 fino )
+    link: http://desica.gestion-act-fijos-remoto:4200
+        -->ERROR en el browse: "Inavlid header" ??? 
+        Do this:
+        $ ng serve --host=desica.gestion-act-fijos --disble-host-check 
+        !!!! Eeeeexiiitooooo !!!!! 
+        
+ 
+---------------------------------------------------------
+II. Spring REST CORS y su configuración desde el BackEnd: 
+---------------------------------------------------------
+doc: https://www.arquitecturajava.com/spring-rest-cors-y-su-configuracion/

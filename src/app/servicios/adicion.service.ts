@@ -9,7 +9,8 @@ import { Adicion } from 'src/modelos/Adicion';
 
 export class AdicionService {
 
-  private baseURL = "http://localhost:8090/api";  
+  //private baseURL = "http://localhost:8090/api";  
+  private baseURL = "http://desica.gestion-act-fijos:8090/api";  
 
   constructor( private _httpClient : HttpClient ) { } 
 

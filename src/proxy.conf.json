@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "http://desica.gestion-act-fijos:8090",
+        "secure": false
+    }
+}

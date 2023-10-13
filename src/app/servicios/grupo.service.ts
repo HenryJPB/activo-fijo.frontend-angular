@@ -8,7 +8,8 @@ import { Grupo } from 'src/modelos/Grupo';
 })
 export class GrupoService {
 
-  private baseURL = "http://localhost:8090/api";  
+  //private baseURL = "http://localhost:8090/api";  
+  private baseURL = "http://desica.gestion-act-fijos:8090/api";  
 
   constructor( private _httpClient : HttpClient ) { } 
 

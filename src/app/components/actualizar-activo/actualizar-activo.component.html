@@ -13,30 +13,34 @@
                 <div class="card-body">
                   <form [formGroup]="activoForm"  (ngSubmit)="guardar( activo )" >
 
-                    <div class="row mb-3">
+                    <div class="row mb-9">
 
-                        <label for="inputCodActivo" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Cod Activo:</label> </h3> </label>
+                        <label for="inputCodActivo" class="col-sm-3 col-form-label"> <h3> <label style="color: red">*</label> <label>Codigo Activo:</label> </h3> </label>
                         <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo" (ngModelChange)="activo.codigo_activo = $event.toUpperCase()" [readOnly]="true"  >    
                           <span class="text-danger" *ngIf="activoForm.get('codigo_activo')?.hasError('required') && activoForm.get('codigo_activo')?.touched" ><strong>Codigo activo obligatorio</strong></span>  
                         </div>
 
-                        <mat-form-field class="fit-content" style="width: 350px;" >
-                        <mat-label> <label style="color: red">*</label>Grupo: </mat-label>
-                          <div class="col-sm-13"> 
-                            <mat-select placeholder="Selecciona tu opcion" formControlName="grupo" [(ngModel)]="activo.grupo" > 
-                              <mat-option *ngFor="let grupo of arr_grupo" [value]="grupo.descripcion" >
-                                {{grupo.descripcion}}
-                              </mat-option>
-                            </mat-select>
-                          </div>
-                        </mat-form-field>
-                        <span class="text-danger" *ngIf="activoForm.get('grupo.descripcion')?.hasError('required') && activoForm.get('grupo.descripcion')?.touched" ><strong>Grupo del activo obligatorio</strong></span>    
+                        <div> 
+                            <mat-form-field class="fit-content" style="width: 350px;" >
+                            <mat-label> <label style="color: red">*</label>Grupo: </mat-label>
+                              <div class="col-sm-13"> 
+                                <mat-select placeholder="Selecciona tu opcion" formControlName="grupo" [(ngModel)]="activo.grupo" > 
+                                  <mat-option *ngFor="let grupo of arr_grupo" [value]="grupo.descripcion" >
+                                    {{grupo.descripcion}}
+                                  </mat-option>
+                                </mat-select>
+                              </div>
+                            </mat-form-field>
+                            <span class="text-danger" *ngIf="activoForm.get('grupo.descripcion')?.hasError('required') && activoForm.get('grupo.descripcion')?.touched" ><strong>Grupo del activo obligatorio</strong></span>                    
+                            <button routerLink="/listar-activos" class="btn btn-secondary btn-lg float-star" [disabled]="true" >Act. Grupo</button> 
+                        </div>
+                
                     </div>
 
                     <div class="row mb-2">
-                        <label for="inputDescripcion" class="col-sm-2 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
-                        <div class="col-sm-10">
+                        <label for="inputDescripcion" class="col-sm-3 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
+                        <div class="col-sm-9">
                           <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="activo.descripcion" (ngModelChange)="activo.descripcion = $event.toUpperCase()"   >
                           <span class="text-danger" *ngIf="activoForm.get('descripcion')?.hasError('required') && activoForm.get('descripcion')?.touched" ><strong>Descripcion obligatorio</strong></span>
                         </div>
@@ -46,26 +50,30 @@
                       <!-- 
                       <h4 class="display-2">Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ubicacionSelect.descripcion }}</h4>
                       -->
-                      <div> 
+                      <div class="row mb-2" > 
                         <div *ngIf="ubicacionSelect.descripcion===null || ubicacionSelect.descripcion===''; else no_nulo"> 
-                          <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *NO REGISTRADA* </h4>
+                          <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *NO REGISTRADA* </h4>
                         </div>
-                        <ng-template #no_nulo> <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ubicacionSelect.descripcion }}</h4> </ng-template>           
+                        <ng-template #no_nulo> <h4 class="display-2"><label style="color: red">*</label>Ubicacion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ubicacionSelect.descripcion }}</h4> </ng-template>     
                       </div>
-                      <mat-form-field class="fit-content" style="width: 550px;" >
-                        <mat-label> NUEVA UBICACION </mat-label>
-                        <div class="col-sm-13"> 
-                          <!-- 
-                          <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect" [(value)]="ubicacionSelect" >
-                          <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="ubicacion" >  // De esta manera 👉 [(ngModel)]="activo.ubicacion"> : el gadget posee otro behavior 
-                          -->
-                          <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="activo.ubicacion" > 
-                            <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion" >
-                              {{ubicacion.descripcion}}
-                            </mat-option>
-                          </mat-select>
-                        </div>
-                      </mat-form-field>
+
+                      <div>
+                          <mat-form-field class="fit-content" style="width: 500px;" >
+                            <mat-label> NUEVA UBICACION </mat-label>
+                            <div class="col-sm-13"> 
+                              <!-- 
+                              <mat-select [(ngModel)]="ubicacionSelect" name="ubicacionSelect" [(value)]="ubicacionSelect" >
+                              <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="ubicacion" >  // De esta manera 👉 [(ngModel)]="activo.ubicacion"> : el gadget posee otro behavior 
+                              -->
+                              <mat-select placeholder="Selecciona tu opcion" formControlName="ubicacion" [(ngModel)]="activo.ubicacion" > 
+                                <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion" >
+                                  {{ubicacion.descripcion}}
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </mat-form-field>
+                          <button routerLink="/listar-ubicaciones" class="btn btn-secondary btn-lg float-star" [disabled]="false" >Act. Ubicaciones</button>  
+                      </div>
                       <!-- 
                       <h4 class="display-4">{{ ubicacionSelect.descripcion }}</h4>
                       <span class="text-danger" *ngIf="activoForm.get('ubicacion.descripcion')?.hasError('required') && activoForm.get('ubicacion.descripcion')?.touched" ><strong>Ubicacion del  activo obligatorio</strong></span>     

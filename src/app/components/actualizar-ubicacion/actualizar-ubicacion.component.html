@@ -15,7 +15,7 @@
 
                     <div class="row mb-2">
                         <!-- Codigo ubic -->
-                        <label for="inputCodUbic" class="col-sm-2 col-form-label"> <h3> <label style="color: red">*</label> <label>Codigo :</label> </h3> </label>
+                        <label for="inputCodUbic" class="col-sm-3 col-form-label"> <h3> <label style="color: red">*</label> <label>Codigo :</label> </h3> </label>
                         <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo ubicacion" formControlName="codigo_ubic" [(ngModel)]="ubicacion.codigo_ubic" (ngModelChange)="ubicacion.codigo_ubic = $event.toUpperCase()" [readOnly]="true" />    
                           <span class="text-danger" *ngIf="ubicacionForm.get('codigo_ubic')?.hasError('required') && ubicacionForm.get('codigo_ubic')?.touched" ><strong>Codigo ubicacion obligatorio</strong></span>  
@@ -25,9 +25,9 @@
 
                     <!-- Descripcion --> 
                     <div class="row mb-4">
-                        <label for="inputDescripcion" class="col-sm-2 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion activo" formControlName="descripcion" [(ngModel)]="ubicacion.descripcion" (ngModelChange)="ubicacion.descripcion = $event.toUpperCase()" /> 
+                        <label for="inputDescripcion" class="col-sm-3 col-form-label"><h3> <label style="color: red">*</label> <label>Descripcion:</label> </h3></label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion ubicacion" formControlName="descripcion" [(ngModel)]="ubicacion.descripcion" (ngModelChange)="ubicacion.descripcion = $event.toUpperCase()" /> 
                           <span class="text-danger" *ngIf="ubicacionForm.get('ubicacion.descripcion')?.hasError('required') && ubicacionForm.get('ubicacion.descripcion')?.touched" ><strong>Descripcion obligatorio</strong></span>
                         </div>
                     </div>      

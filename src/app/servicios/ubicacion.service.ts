@@ -10,7 +10,8 @@ import { Ubicacion } from 'src/modelos/Ubicacion';
 export class UbicacionService {
 
    // Esta URL gets listado de ubicaciones de la B.D.
-  private baseURL = "http://localhost:8090/api"; 
+  // private baseURL = "http://localhost:8090/api"; 
+  private baseURL = "http://desica.gestion-act-fijos:8090/api";  
 
   // URL para gestion de Impresiones.
   // private baseURLimprimir = "http://localhost:8090/api/informes"; 

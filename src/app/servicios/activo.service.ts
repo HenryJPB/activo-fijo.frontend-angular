@@ -17,7 +17,8 @@ import { ListarUbicacionesComponent } from '../components/listar-ubicaciones/lis
 export class ActivoService {
 
   // Esta URL gets listado de todos los activos de la B.D.
-  private baseURL = "http://localhost:8090/api"; 
+  //private baseURL = "http://localhost:8090/api"; 
+  private baseURL = "http://desica.gestion-act-fijos:8090/api"; 
 
   // private baseURLdelete = "http://localhost:8090/api/empleados/eliminar";
 
