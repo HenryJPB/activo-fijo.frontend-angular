@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/enviroment';
 import { Adicion } from 'src/modelos/Adicion';
 
 @Injectable({
@@ -9,8 +10,10 @@ import { Adicion } from 'src/modelos/Adicion';
 
 export class AdicionService {
 
-  //private baseURL = "http://localhost:8090/api";  
-  private baseURL = "http://desica.gestion-act-fijos:8090/api";  
+  private ip_backend = environment.ip_backend;  
+  // private baseURL = "http://localhost:8090/api";  
+  // private baseURL = "http://desica.gestion-act-fijos:8090/api";  
+  private baseURL = "http://"+this.ip_backend+":8090/api";  
 
   constructor( private _httpClient : HttpClient ) { } 
 

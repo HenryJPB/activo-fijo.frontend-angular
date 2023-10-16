@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Activo } from 'src/modelos/Activo';
 import { Ubicacion } from 'src/modelos/Ubicacion';
 import { ListarUbicacionesComponent } from '../components/listar-ubicaciones/listar-ubicaciones.component';
+import { environment } from 'src/enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,13 @@ import { ListarUbicacionesComponent } from '../components/listar-ubicaciones/lis
 */ 
 export class ActivoService {
 
+  // private ip_backend = "desica.gestion-act-fijos";
+  // private ip_backend = window['ip_backend'];  
+  private ip_backend = environment.ip_backend;  
   // Esta URL gets listado de todos los activos de la B.D.
-  //private baseURL = "http://localhost:8090/api"; 
-  private baseURL = "http://desica.gestion-act-fijos:8090/api"; 
+  // private baseURL = "http://localhost:8090/api"; 
+  // private baseURL = "http://desica.gestion-act-fijos:8090/api"; 
+  private baseURL = "http://"+this.ip_backend+":8090/api"; 
 
   // private baseURLdelete = "http://localhost:8090/api/empleados/eliminar";
 

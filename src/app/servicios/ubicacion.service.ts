@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/enviroment';
 import { Ubicacion } from 'src/modelos/Ubicacion';
 
 @Injectable({
@@ -9,9 +10,10 @@ import { Ubicacion } from 'src/modelos/Ubicacion';
 
 export class UbicacionService {
 
-   // Esta URL gets listado de ubicaciones de la B.D.
+  private ip_backend = environment.ip_backend;  
+  // Esta URL gets listado de ubicaciones de la B.D.
   // private baseURL = "http://localhost:8090/api"; 
-  private baseURL = "http://desica.gestion-act-fijos:8090/api";  
+  private baseURL = "http://"+this.ip_backend+":8090/api";  
 
   // URL para gestion de Impresiones.
   // private baseURLimprimir = "http://localhost:8090/api/informes"; 
