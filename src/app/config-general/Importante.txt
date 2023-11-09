@@ -1,0 +1,35 @@
+*******************************
+Autor: Henry Jose Pulgar Blanco
+Fecha: 31 de octubre 2023 09:01
+*******************************
+
+* Nombre logico de esta aplicacion : 'gestion.activo-fijos'
+* Nombre fisico de esta aplicacion : 'gestion.activo-fijos'
+
+---------------------------------------------
+* Actualizar /etc/hosts:
+---------------------------------------------
+  193.168.0.57    desica.gestion-act-fijos        activos-fijos
+
+-----------------------------------------------------------------------------
+* Chequear q el backend de tu aplicacion se ejecuta en un contenedor Docker!!
+  mi ejemplo: 
+  sudo docker start mariadb
+-----------------------------------------------------------------------------
+
+----------------------------
+* Ejecutar servidor nodejs :
+----------------------------
+  ng serve --host=desica.gestion-act-fijos --disable-host-check
+
+-------
+* Link: open your browser on http://desica.gestion-act-fijos:4200/ *
+-------
+
+------------------------------------------------------------------------------------
+chequear variable global ip_backend = '?' en el archivo del proyecto enviroment.ts : 
+------------------------------------------------------------------------------------
+  export const environment = {
+    production: true,
+    ip_backend: "desica.gestion-act-fijos",  -- ip_backend = '193.168.0.57';   
+  };

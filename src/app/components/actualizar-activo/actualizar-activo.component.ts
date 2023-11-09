@@ -37,6 +37,8 @@ export class ActualizarActivoComponent implements OnInit {
   ubicacionSelectControl = new FormControl( this.ubicacionSelect ); 
   ubicaciones : Ubicacion[]=[];   
   seleccionado : string | undefined;  
+  primer_reg = 0; 
+  ultimo_reg = 0; 
 
   imagenes : any = [];  
   imgPrevisualizacion! : string;
@@ -77,7 +79,23 @@ export class ActualizarActivoComponent implements OnInit {
     this.getUbicacionPorCod( codigo_ubic );  
     this.getUbicaciones();  
     // 
+    this.getIdPrimerReg();  
+    this.getIdUltimoReg();    
   } // ngOnInit() 
+
+  //---------------------------------------------------------------------------
+  getIdPrimerReg() {
+    this._activo.getPrimero().subscribe( response=>{
+      this.primer_reg = response;  
+    } );  
+  }
+
+   //---------------------------------------------------------------------------
+   getIdUltimoReg() {
+    this._activo.getUltimo().subscribe( response=>{
+      this.ultimo_reg= response;  
+    } );
+   }
 
   //---------------------------------------------------------------------------
   getActivoPorId(id: any) {
@@ -160,7 +178,53 @@ export class ActualizarActivoComponent implements OnInit {
     ); 
   }
 
-  // -------------------------OLD------------------------------------------------
+  //-------------------------------------------------------------------------------------
+  goPrimero() {
+    console.log("Go 1er reg."); 
+    this._activo.getPrimero().subscribe( response=>{
+      console.log( response );
+      this.getActivoPorId( response ); 
+    } ); ;
+  } // goPrimero.
+
+  //-------------------------------------------------------------------------------------
+  goPrevio() {
+    console.log("Go 1Previo reg."); 
+    this._activo.getPrevio( this.activo.id ).subscribe( response=>{ 
+      console.log( response );
+      if ( response===null || response===undefined ) { 
+        //console.log("Registro NULO,.........");
+        //this.getActivoPorId( this. );
+      } else { 
+        this.getActivoPorId( response );
+      }
+    } ); 
+  } // goPrevio
+
+  //-------------------------------------------------------------------------------------
+  goSiguiente() {
+    console.log("Go Next reg."); 
+    this._activo.getProximo( this.activo.id ).subscribe( response=>{
+      console.log( response );
+      if ( response===null || response===undefined ) { 
+        //console.log("Registro NULO,.........");
+        //this.getActivoPorId( this. );
+      } else { 
+        this.getActivoPorId( response );
+      }
+    } ); 
+  }  // goSiguiente. 
+
+  //-------------------------------------------------------------------------------------
+  goFinal() {
+    console.log("Go Ultimo reg."); 
+    this._activo.getUltimo().subscribe( response=>{
+      console.log( response );  
+      this.getActivoPorId( response );  
+    } );
+  }  // goFinal.
+
+  //-------------------------OLD------------------------------------------------
   //--------------------*Testing*------------------------------------------------
   guardarActivoOLD( activo: Activo ) { 
     console.log("*****Update activo.Ini*********");

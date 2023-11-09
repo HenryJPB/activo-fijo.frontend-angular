@@ -48,11 +48,35 @@ export class ActivoService {
     return this._httpClient.get<Activo[]>(URL);
   } // getAcfivosLike()
 
-  /* Ejemplo: 
+  //-------------------------------------------------------------
+  getPrimero():Observable<number> {
+    const URL = this.baseURL + "/activos/getPrimero";
+    return this._httpClient.get<number>(URL);     
+  }  // getPrimero(). 
+
+  //-------------------------------------------------------------
+  getPrevio( previo: number ):Observable<number> {
+    const URL = this.baseURL + "/activos/getPrevio/"+previo;   
+    return this._httpClient.get<number>(URL); 
+  } // getPrevio().
+
+  //-------------------------------------------------------------
+  getProximo( proximo: number ):Observable<number> {
+   const URL = this.baseURL + "/activos/getProximo/"+proximo;   
+   return this._httpClient.get<number>(URL);  
+  } // getProximo(). 
+
+  //-------------------------------------------------------------
+  getUltimo():Observable<number> { 
+    const URL = this.baseURL + "/activos/getFinal"
+    return this._httpClient.get<number>(URL);
+  }    // getUltimo() 
+
+  /* Ejemplo: **********************************************************
   * guardarTrabajador(trabajador: Trabajador ):Observable<Object> {
   *   return this.httpClient.post(`${this.baseURL}`,trabajador); 
   * }
-  * */    
+  * *********************************************************************/    
   //-------------------------------------------------------------
   guardarActivo( activo: Activo ):Observable<Object> {
     const URL = this.baseURL + "/activos"; 

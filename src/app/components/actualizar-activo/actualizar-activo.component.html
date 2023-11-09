@@ -11,10 +11,29 @@
                 </div>
           
                 <div class="card-body">
+
+                  <div class="text-center">
+                        <button title="Primer registro" mat-icon-button (click)="goPrimero()" >
+                          <mat-icon color="primary" >skip_previous</mat-icon>
+                        </button>
+
+                        <button title="Registro previo" mat-icon-button (click)="goPrevio()" >
+                          <mat-icon color="primary" >arrow_back_ios</mat-icon>
+                        </button>
+
+                        <button title="Registro siguiente" mat-icon-button (click)="goSiguiente()" >
+                          <mat-icon color="primary" >arrow_forward_ios</mat-icon>
+                        </button>
+
+                        <button title="Adicionar" mat-icon-button (click)="goFinal()" >
+                          <mat-icon color="primary" >skip_next</mat-icon>
+                        </button>
+                    </div>
+
                   <form [formGroup]="activoForm"  (ngSubmit)="guardar( activo )" >
 
                     <div class="row mb-9">
-
+                        
                         <label for="inputCodActivo" class="col-sm-3 col-form-label"> <h3> <label style="color: red">*</label> <label>Codigo Activo:</label> </h3> </label>
                         <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputCodActivo" placeholder="Codigo activo" formControlName="codigo_activo" [(ngModel)]="activo.codigo_activo" (ngModelChange)="activo.codigo_activo = $event.toUpperCase()" [readOnly]="true"  >    
@@ -183,7 +202,7 @@
                       </div>
 
                       <button routerLink="/listar-activos" class="btn btn-secondary btn-lg float-star">VOLVER/CANCELAR</button>
-                      
+
                       <button type="submit" [disabled]="activoForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
                   </form>
 
