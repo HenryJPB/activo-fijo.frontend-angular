@@ -1,0 +1,12 @@
+# Autor: HJPB. 
+# atencion:
+#  - Este aplicativo usa como gestor de BD las version de Docker container:
+#     - Mysql en mi instalacion Debian 11.
+#     - MariaDB en mi instalacion Debian 12. 
+#       Este ultimo debes chequear q la instalcion local de 'Mariadb' no este en ejecucion para q no haya 
+#       conflicto de puertos:
+#       $ sudo systemctl status mariadb.service ( local ) 
+#         :( positivo ?) -> sudo systemctl stop mariadb.service 
+#       NOTA: (1). en cualquier otra instalacion check por el DNS 'desica.gestion-act-fijos'    
+#             (2). chequear el archivo 'enviroments' de tu proyecto Angular y ajustarla a tu entorno.  
+ng serve --host=desica.gestion-act-fijos --disable-host-check    

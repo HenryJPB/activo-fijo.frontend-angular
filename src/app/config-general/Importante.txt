@@ -33,3 +33,11 @@ chequear variable global ip_backend = '?' en el archivo del proyecto enviroment.
     production: true,
     ip_backend: "desica.gestion-act-fijos",  -- ip_backend = '193.168.0.57';   
   };
+
+  -------------------------------------------------------
+  pie/pag
+
+  documentaacion: 
+    - Al iniciar: 
+    https://tenocode.com/login-y-registro-con-angular/ 
+    

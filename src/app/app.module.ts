@@ -57,6 +57,7 @@ import { ActualizarAdicionComponent } from './components/actualizar-adicion/actu
 import { CrearUbicacionComponent } from './components/crear-ubicacion/crear-ubicacion.component';
 import { ActualizarUbicacionComponent } from './components/actualizar-ubicacion/actualizar-ubicacion.component';
 import { DetalleUbicacionComponent } from './components/detalle-ubicacion/detalle-ubicacion.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { DetalleUbicacionComponent } from './components/detalle-ubicacion/detall
     ActualizarAdicionComponent,
     CrearUbicacionComponent,
     ActualizarUbicacionComponent,
-    DetalleUbicacionComponent
+    DetalleUbicacionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

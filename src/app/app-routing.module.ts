@@ -16,9 +16,11 @@ import { ActualizarAdicionComponent } from './components/actualizar-adicion/actu
 import { CrearUbicacionComponent } from './components/crear-ubicacion/crear-ubicacion.component';
 import { ActualizarUbicacionComponent } from './components/actualizar-ubicacion/actualizar-ubicacion.component';
 import { DetalleUbicacionComponent } from './components/detalle-ubicacion/detalle-ubicacion.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: PagBienvenidaComponent },
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'pag-bienvenida', component: PagBienvenidaComponent },
   { path: 'listar-activos', component: ListarActivosComponent },
   { path: 'detalle-activo/:id/:codigo_ubic', component: DetalleActivoComponent }, 
@@ -50,7 +52,7 @@ const routes: Routes = [
 */
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true})],  // use Hash : check a Fernando Herrera, udemy curse 'Convierte cualquire template en una app Angular'  
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
